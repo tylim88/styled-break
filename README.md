@@ -230,3 +230,36 @@ basically a extended `styled` of Styled Component
 
 * component(required): same as component object described in [styledHOC](https://github.com/tylim88/styled-break#styledhoccomponentslevel).
 * styledCss(required): same as styledCss object described in [styledCss](https://github.com/tylim88/styled-break#styledcss).
+* sLevel(optional):  same as sLevel number described in [styledHOC](https://github.com/tylim88/styled-break#styledhoccomponentslevel).
+
+usage example
+
+```jsx
+// to create styled html component
+const DivStyled = styledR('div')({xs_o: css`${props=> `width: ${props.width}px;`}`})(1)
+
+// to create a styled react component
+const ButtonStyled = styledR(Button)(`width: 100px;`)(2)
+```
+
+### cssR(styledCss)
+
+if you don't like to create responsive styled component with `styledR` or `styledHOC`, you want to use `styled` api of Styled Component, then this is what you need.
+
+* styledCss(required): same as styledCss object described in [styledCss](https://github.com/tylim88/styled-break#styledcss).
+
+```jsx
+import styled, { css } from 'styled-components'
+
+const DivStyled = styled.div`
+  ${cssR({
+        xs_m: `width:100px;`
+        sm_md: `width:200px;
+        xl: css`${props =>
+            `width:${props.maxWidth}px;`
+      })}
+`
+```
+
+keep in mind that to always use `css` helper to interpolate the function.
+
