@@ -72,7 +72,6 @@ const responsiveStyledGenerator = config => {
 					]
 				}
 			}
-			console.log(cssString.join(''))
 			return cssString
 		} else {
 			return ''
@@ -105,4 +104,4 @@ const responsiveStyledGenerator = config => {
 	return { cssR, styledR, styledHOC }
 }
 
-export { responsiveStyledGenerator }
+export default responsiveStyledGenerator

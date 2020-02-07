@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { responsiveStyledGenerator } from './components/styled-break'
+import styledBreak from './components/styledBreak'
 import { css } from 'styled-components'
 
 const config = {
@@ -15,7 +15,7 @@ const config = {
 	sLevel: 3,
 }
 
-const { styledHOC } = responsiveStyledGenerator(config)
+const { styledHOC } = styledBreak(config)
 
 const DivStyled = styledHOC('div')()
 
