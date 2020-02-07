@@ -1,11 +1,11 @@
 {
-	"name": "styled-responsive",
-	"version": "0.6.9",
-	"description": "make responsive styled components with breeze!",
+	"name": "styled-break",
+	"version": "0.0.0",
+	"description": "Create Responsive Styled Components With Breeze!",
 	"main": "build/Link.js",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/tylim88/styled-responsive"
+		"url": "https://github.com/tylim88/styled-break"
 	},
 	"scripts": {
 		"test": "jest",
@@ -38,10 +38,8 @@
 		"neutrino": "^9.1.0",
 		"prettier": "^1.19.1",
 		"prettier-quick": "0.0.5",
-		"prop-types": "^15.7.2",
 		"react": "^16.12.0",
 		"react-dom": "^16.12.0",
-		"react-helmet": "^5.2.1",
 		"styled-components": "^5.0.1",
 		"webpack": "^4.41.5",
 		"webpack-cli": "^3.3.10",
