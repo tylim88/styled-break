@@ -91,8 +91,8 @@ const responsiveStyledGenerator = config => {
 
 	const styledR = comp => (styledCss = '', level = sLevel_) => {
 		return isComponentHtml(comp)`
-	 ${specificityWrapper(styledCss, level)}
-	 `
+	${specificityWrapper(styledCss, level)}
+	`
 	}
 	const styledHOC = comp => (level = sLevel_) => {
 		return isComponentHtml(comp)`
