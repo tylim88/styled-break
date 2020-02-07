@@ -85,9 +85,9 @@ Above responsive code translate into
 }
 ```
 
-## Doc
+## Core utilities
 
-### styledBreak(config)
+### 1. styledBreak(config)
 
 ```jsx
 const config = {
@@ -111,22 +111,7 @@ const { cssR, styledR, styledHOC } = styledBreak(config)
   * breakpoints(required): you can define as many breakpoints you want, however please avoid including underscore `_` in props name. The value should be the **minimum** value of your breakpoint (the unit is `px`).
   * sLevel(optional): is your class specificity level, default value is `1`. You can nest specificity level in the tagged template literal to have finer control on class specificity.
   
-### styledHOC(component)(sLevel)  <--Recommended
-
-creates a component that accept `styledCSS` prop that take `styledCSS` object (see below for more information about this `styledCSS` object).
-
-* component(required): the component can be Html or React component, see below code for example
-* sLevel: override the `sLevel` pass to `styledBreak`, the default value is `styledBreak`'s `sLevel`.
-
-```jsx
-// to create styled html component
-const DivStyled = styledHOC('div')(1)
-
-// to create a styled react component
-const ButtonStyled = styledHOC(Button)(2)
-```
-
-### styledCss
+### 2. styledCss
 
 this is your responsive object, the props name have 4 combination for every breakpoint, let take break point `xs`, `sm` and `md` as example where minimum of `xs` is 0, `sm` is 576 and `md` is 768.
 
@@ -224,7 +209,24 @@ const styledCss = css`${props=> `width: ${props.width}px;`}`
 
 you don't need `css` helper if you are not doing function interpolation.
 
-### styledR(component)(styledCss)(sLevel)
+## Create Responsive Styled Component
+
+### 1. styledHOC(component)(sLevel)  <--Recommended
+
+creates a component that accept `styledCSS` prop that take `styledCSS` object (see [styledCss](https://github.com/tylim88/styled-break#styledcss) for more information).
+
+* component(required): the component can be Html or React component, see below code for example
+* sLevel: override the `sLevel` pass to `styledBreak`, the default value is `styledBreak`'s `sLevel`.
+
+```jsx
+// to create styled html component
+const DivStyled = styledHOC('div')(1)
+
+// to create a styled react component
+const ButtonStyled = styledHOC(Button)(2)
+```
+
+### 2. styledR(component)(styledCss)(sLevel)
 
 styledR is basically an extended `styled` of Styled Component
 
@@ -242,7 +244,7 @@ const DivStyled = styledR('div')({xs_o: css`${props=> `width: ${props.width}px;`
 const ButtonStyled = styledR(Button)(`width: 100px;`)(2)
 ```
 
-### cssR(styledCss)
+### 3. cssR(styledCss)
 
 if you don't like to create responsive styled component with `styledR` or `styledHOC`, you want to use `styled` api of Styled Component, then this is what you need.
 
@@ -261,4 +263,4 @@ const DivStyled = styled.div`
 `
 ```
 
-keep in mind that to always use `css` helper to interpolate the function.
+keep in mind to always use `css` helper to interpolate the function.
