@@ -10,17 +10,11 @@ const mediaParser = (
 	const getMaxWidth = targetPointValue => {
 		const values = Object.values(sortedBreakpoints)
 		const result = values[values.indexOf(targetPointValue) + 1]
-		if (result) {
-			return result - 0.02 + 'px'
-		} else {
-			return 999999 + 'px'
-		}
+		return result ? result - 0.02 : 999999
 	}
 
-	const maxWidth = getMaxWidth(targetPointValue)
-
 	const minMedia = `@media (min-width: ${targetPointValue}px)`
-	const maxMedia = maxWidth ? `@media (max-width: ${maxWidth})` : ''
+	const maxMedia = `@media (max-width: ${getMaxWidth(targetPointValue)}px)`
 	switch (direction) {
 		case '':
 			return minMedia
@@ -31,11 +25,9 @@ const mediaParser = (
 		default: {
 			const targetPointValue2 = sortedBreakpoints[direction]
 			if (targetPointValue2) {
-				const maxWidth2 = getMaxWidth(targetPointValue2)
-				const maxQuery = maxWidth2
-					? `and (max-width: ${getMaxWidth(targetPointValue2)})`
-					: ''
-				return `${minMedia} ${maxQuery}`
+				return `${minMedia} and (max-width: ${getMaxWidth(
+					targetPointValue2
+				)}px)`
 			} else {
 				return minMedia
 			}

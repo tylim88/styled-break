@@ -1,10 +1,12 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { responsiveStyledGenerator } from './components/styled-break'
+import { css } from 'styled-components'
 
 const config = {
 	breakpoints: {
 		xs: 0,
+		sx: 501,
 		sm: 576,
 		md: 768,
 		lg: 992,
@@ -20,18 +22,21 @@ const DivStyled = styledHOC('div')()
 const Demo = () => {
 	return (
 		<DivStyled
+			maxWidth='500'
 			styledCss={{
-				sm_m: `width:100px;
+				xs_m: `width:100px;
 				height:100px;
 				background-color:blue;`,
-				md_lg: `
+				sm_md: `
 				width:200px;
 				height:200px;
 				background-color:red;`,
-				xl: `
-				width:300px;
+				xl: css`
+					${props =>
+						`width:${props.maxWidth}px;
 				height:300px;
-				background-color:yellow;`,
+				background-color:purple;`}
+				`,
 			}}
 		/>
 	)
