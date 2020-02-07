@@ -14,12 +14,10 @@ Try it at **[Code Sandbox](https://codesandbox.io/s/styled-break-sf6c9)**!
 
 ## Usage
 
-simply use it just like you use React Router Link
-
 ```jsx
 import React from 'react'
 import { render } from 'react-dom'
-import { responsiveStyledGenerator } from 'styled-break'
+import styledBreak from 'styled-break'
 import { css } from 'styled-components'
 
 const config = {
@@ -34,7 +32,7 @@ const config = {
   sLevel: 3,
 }
 
-const { styledHOC } = responsiveStyledGenerator(config)
+const { styledHOC } = styledBreak(config)
 
 const DivStyled = styledHOC('div')()
 
@@ -87,6 +85,131 @@ Above responsive code translate into
 }
 ```
 
-## API
+## Doc
 
+### styledBreak(config)
 
+```jsx
+const config = {
+  breakpoints: {
+    xs: 0,
+    sx: 501,
+    sm: 576,
+    md: 768,
+    lg: 992,
+    xl: 1200,
+  },
+  sLevel: 3,
+}
+
+const { cssR, styledR, styledHOC } = styledBreak(config)
+```
+
+create a `cssR` helper function plus 2 HOC `styledR` and `styledHOC`.
+
+* config(required): object made of `breakpoints` and `sLevel` props.
+  * breakpoints(required): you can define as many breakpoints you want, however please avoid including underscore `_` in props name. The value should be the **minimum** value of your breakpoint (the unit is `px`).
+  * sLevel(optional): is your class specificity level, default value is `1`. You can nest specificity level in the tagged template literal to have finer control on class specificity.
+  
+### styledHOC(component)(sLevel)
+
+create a component that accept `styledCSS` prop that take `styledCSS` object (see below for more information about this `styledCSS` object).
+
+* component(required): the component can be Html or React component, see below code for example
+* sLevel: override the `sLevel` pass to `styledBreak`, the default value is `styledBreak`'s `sLevel`.
+
+```jsx
+// to create styled html component
+const DivStyled = styledHOC('div')(1)
+
+// to create a styled react component
+const ButtonStyled = styledHOC(Button)(2)
+```
+
+### styledCss
+
+Is your responsive object, the props name have 4 combination for every breakpoint, let take break point `xs`, `sm` and `md` as example where minimum of `xs` is 0, `sm` is 576 and `md` is 768.
+
+here is how you do max, min, only, and between width:
+
+### min
+
+don't append anything to the breakpoint prop name:
+
+```jsx
+{xs:`width: 100px;`}
+```
+
+which translate into
+
+```css
+@media (min-width: 0px) {
+    width: 100px;
+}
+```
+
+### max
+
+append `_m` to the breakpoint prop name:
+
+```jsx
+{sm_m:`width: 100px;`}
+```
+
+which translate into
+
+```css
+@media (max-width: 576px) {
+    width: 100px;
+}
+```
+
+the value max width is `next breakpoint - 0.02`
+
+if there is no next breakpoint, the value is `999999`
+
+### between
+
+append `_anotherBreakpointName` to the breakpoint prop name:
+
+```jsx
+{xs_sm:`width: 100px;`}
+```
+
+which translate into
+
+```css
+@media (min-width: 0px) and (max-width: 767.98px) {
+    width: 100px;
+}
+```
+
+it takes `xs` **min** width and `md` **max** width.
+
+### only
+
+append `_o` to the breakpoint prop name:
+
+```jsx
+{xs_o:`width: 100px;`}
+```
+
+which translate into
+
+```css
+@media (min-width: 0px) and (max-width: 575.98px) {
+    width: 100px;
+}
+```
+
+it takes `xs` **min** width and `xs` **max** width.
+
+Of course you can also interpolate function just like you do in Styled Component (because that is the whole point), however you need Styled Component `css` helper function.
+
+```jsx
+import {css} from styled-components
+
+const styledCss = {xs_o: css`${props=> `width: ${props.width}px;`}`}
+```
+
+you don't need `css` helper if you are just passing string

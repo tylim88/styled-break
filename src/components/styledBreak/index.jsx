@@ -38,6 +38,8 @@ const mediaParser = (
 const responsiveStyledGenerator = config => {
 	const { breakpoints, sLevel } = config
 
+	const sLevel_ = sLevel || 1
+
 	const sortedBreakpoints = Object.keys(breakpoints)
 		.sort((a, b) => {
 			return breakpoints[a] - breakpoints[b]
@@ -81,18 +83,18 @@ const responsiveStyledGenerator = config => {
 	const isComponentHtml = component =>
 		typeof component === 'string' ? styled[component] : styled(component)
 
-	const specificityWrapper = (styledCss = '', level = sLevel) => css`
+	const specificityWrapper = (styledCss = '', level = sLevel_) => css`
 		${'&'.repeat(level)} {
 			${cssR(styledCss)}
 		}
 	`
 
-	const styledR = comp => (styledCss = '', level = sLevel) => {
+	const styledR = comp => (styledCss = '', level = sLevel_) => {
 		return isComponentHtml(comp)`
 	 ${specificityWrapper(styledCss, level)}
 	 `
 	}
-	const styledHOC = comp => (level = sLevel) => {
+	const styledHOC = comp => (level = sLevel_) => {
 		return isComponentHtml(comp)`
 			${props => {
 				const { styledCss } = props
