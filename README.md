@@ -223,12 +223,29 @@ creates a component that accept `styledCSS` prop that take `styledCSS` object (s
 * sLevel: override the `sLevel` pass to `styledBreak`, the default value is `styledBreak`'s `sLevel`.
 
 ```jsx
+import { css } from 'styled-components'
+
 // to create styled html component
 const DivStyled = styledHOC('div')(1)
 
 // to create a styled react component
 const ButtonStyled = styledHOC(Button)(2)
+
+const Demo = () => {
+  return (
+    <DivStyled
+      maxWidth='500'
+      styledCss={{
+        xs_m: `width:100px;`,
+        sm_md: `width:200px;`,
+        xl: css`${props =>`width:${props.maxWidth}px;`}`,
+      }}
+    />
+  )
+}
 ```
+
+keep in mind to always use `css` helper to interpolate the function.
 
 ### 2. styledR(component)(styledCss)(sLevel)
 
