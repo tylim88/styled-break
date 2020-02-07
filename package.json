@@ -1,0 +1,87 @@
+{
+	"name": "styled-responsive",
+	"version": "0.6.9",
+	"description": "make responsive styled components with breeze!",
+	"main": "build/Link.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/tylim88/styled-responsive"
+	},
+	"scripts": {
+		"test": "jest",
+		"prepublishOnly": "npm run build -- --no-demo",
+		"start": "webpack-dev-server --mode development --open",
+		"build": "webpack --mode production",
+		"lint": "eslint --cache --format codeframe --ext mjs,jsx,js src test"
+	},
+	"keywords": [
+		"react",
+		"styled-components",
+		"css",
+		"responsive",
+		"breakpoint",
+		"width"
+	],
+	"license": "ISC",
+	"peerDependencies": {
+		"react": "^16",
+		"styled-components": "^5"
+	},
+	"devDependencies": {
+		"@neutrinojs/jest": "^9.1.0",
+		"@neutrinojs/react-components": "^9.1.0",
+		"eslint": "^6.8.0",
+		"eslint-config-prettier": "^6.10.0",
+		"eslint-plugin-prettier": "^3.1.2",
+		"husky": "^4.2.1",
+		"jest": "^25.1.0",
+		"neutrino": "^9.1.0",
+		"prettier": "^1.19.1",
+		"prettier-quick": "0.0.5",
+		"prop-types": "^15.7.2",
+		"react": "^16.12.0",
+		"react-dom": "^16.12.0",
+		"react-helmet": "^5.2.1",
+		"styled-components": "^5.0.1",
+		"webpack": "^4.41.5",
+		"webpack-cli": "^3.3.10",
+		"webpack-dev-server": "^3.10.3"
+	},
+	"dependencies": {},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"prettier/react",
+			"eslint:recommended",
+			"plugin:prettier/recommended",
+			"prettier"
+		],
+		"rules": {
+			"no-unused-vars": [
+				"error",
+				{
+					"args": "after-used"
+				}
+			]
+		},
+		"settings": {
+			"import/resolver": {
+				"node": {
+					"moduleDirectory": [
+						"node_modules",
+						"src/"
+					]
+				}
+			}
+		}
+	},
+	"prettier": {
+		"eslintIntegration": true,
+		"singleQuote": true,
+		"jsxSingleQuote": true,
+		"trailingComma": "es5",
+		"semi": false,
+		"jsxBracketSameLine": false,
+		"useTabs": true
+	}
+}
