@@ -204,12 +204,29 @@ which translate into
 
 it takes `xs` **min** width and `xs` **max** width.
 
+`styledCss` can also be just pure string without any breakpoint needed, which mean the style is applied without any media query.
+
+```jsx
+const styledCss = `width: 100px;`
+```
+
 Of course you can also interpolate function just like you do in Styled Component (because that is the whole point), however you need Styled Component `css` helper function.
 
 ```jsx
 import {css} from styled-components
 
 const styledCss = {xs_o: css`${props=> `width: ${props.width}px;`}`}
+
+// or without any breakpoint
+const styledCss = css`${props=> `width: ${props.width}px;`}`
+
 ```
 
-you don't need `css` helper if you are just passing string
+you don't need `css` helper if you are not doing function interpolation.
+
+### styledR(component)(styledCss)(sLevel)
+
+basically a extended `styled` of Styled Component
+
+* component(required): same as component object described in [styledHOC](https://github.com/tylim88/styled-break#styledhoccomponentslevel).
+* styledCss(required): same as styledCss object described in [styledCss](https://github.com/tylim88/styled-break#styledcss).
