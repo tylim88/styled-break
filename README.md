@@ -105,7 +105,7 @@ const config = {
 const { cssR, styledR, styledHOC } = styledBreak(config)
 ```
 
-create a `cssR` helper function plus 2 HOC `styledR` and `styledHOC`.
+`styledBreak` creates a `cssR` helper function plus 2 HOC `styledR` and `styledHOC`.
 
 * config(required): object made of `breakpoints` and `sLevel` props.
   * breakpoints(required): you can define as many breakpoints you want, however please avoid including underscore `_` in props name. The value should be the **minimum** value of your breakpoint (the unit is `px`).
@@ -113,7 +113,7 @@ create a `cssR` helper function plus 2 HOC `styledR` and `styledHOC`.
   
 ### styledHOC(component)(sLevel)  <--Recommended
 
-create a component that accept `styledCSS` prop that take `styledCSS` object (see below for more information about this `styledCSS` object).
+creates a component that accept `styledCSS` prop that take `styledCSS` object (see below for more information about this `styledCSS` object).
 
 * component(required): the component can be Html or React component, see below code for example
 * sLevel: override the `sLevel` pass to `styledBreak`, the default value is `styledBreak`'s `sLevel`.
@@ -128,7 +128,7 @@ const ButtonStyled = styledHOC(Button)(2)
 
 ### styledCss
 
-Is your responsive object, the props name have 4 combination for every breakpoint, let take break point `xs`, `sm` and `md` as example where minimum of `xs` is 0, `sm` is 576 and `md` is 768.
+this is your responsive object, the props name have 4 combination for every breakpoint, let take break point `xs`, `sm` and `md` as example where minimum of `xs` is 0, `sm` is 576 and `md` is 768.
 
 here is how you do max, min, only, and between width:
 
@@ -202,7 +202,7 @@ which translate into
 }
 ```
 
-it takes `xs` **min** width and `xs` **max** width.
+It takes `xs` **min** width and `xs` **max** width.
 
 `styledCss` can also be just pure string without any breakpoint needed, which mean the style is applied without any media query.
 
@@ -226,7 +226,7 @@ you don't need `css` helper if you are not doing function interpolation.
 
 ### styledR(component)(styledCss)(sLevel)
 
-basically a extended `styled` of Styled Component
+styledR is basically an extended `styled` of Styled Component
 
 * component(required): same as component object described in [styledHOC](https://github.com/tylim88/styled-break#styledhoccomponentslevel).
 * styledCss(required): same as styledCss object described in [styledCss](https://github.com/tylim88/styled-break#styledcss).
@@ -262,4 +262,3 @@ const DivStyled = styled.div`
 ```
 
 keep in mind that to always use `css` helper to interpolate the function.
-
