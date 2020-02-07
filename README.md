@@ -189,11 +189,15 @@ which translate into
 
 It takes `xs` **min** width and `xs` **max** width.
 
+### Without Media Query
+
 `styledCss` can also be just pure string without any breakpoint needed, which mean the style is applied without any media query.
 
 ```jsx
 const styledCss = `width: 100px;`
 ```
+
+### Function Interpolation
 
 Of course you can also interpolate function just like you do in Styled Component (because that is the whole point), however you need Styled Component `css` helper function.
 
