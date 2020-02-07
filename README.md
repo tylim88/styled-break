@@ -111,7 +111,7 @@ create a `cssR` helper function plus 2 HOC `styledR` and `styledHOC`.
   * breakpoints(required): you can define as many breakpoints you want, however please avoid including underscore `_` in props name. The value should be the **minimum** value of your breakpoint (the unit is `px`).
   * sLevel(optional): is your class specificity level, default value is `1`. You can nest specificity level in the tagged template literal to have finer control on class specificity.
   
-### styledHOC(component)(sLevel)
+### styledHOC(component)(sLevel)  <--Recommended
 
 create a component that accept `styledCSS` prop that take `styledCSS` object (see below for more information about this `styledCSS` object).
 
