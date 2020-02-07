@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import React from 'react'
 
 const responsiveCssGenerator = config => {
 	const { mapping, min, sLevel } = config
@@ -43,8 +42,8 @@ const responsiveCssGenerator = config => {
 	 ${specificityWrapper(styledCss, level)}
 	 `
 	}
-	const styledHOC = Comp => (level = sLevel) => {
-		return styled(CompNew)`
+	const styledHOC = (comp, level = sLevel) => {
+		return styled(comp)`
 			${props => {
 				const { styledCss } = props
 				return specificityWrapper(styledCss, level)
