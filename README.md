@@ -113,6 +113,14 @@ const { cssR, styledR, styledHOC } = styledBreak(config)
   
 ### 2. styledCss
 
+```jsx
+{
+  xs_m: `width:100px;`,
+  sm_md: `width:200px;`,
+  xl: css`${props =>`width:${props.maxWidth}px;`}`,
+}
+```
+
 this is your responsive object, the props name have 4 combination for every breakpoint, let take break point `xs`, `sm` and `md` as example where minimum of `xs` is 0, `sm` is 576 and `md` is 768.
 
 here is how you do max, min, only, and between width:
