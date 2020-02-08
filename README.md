@@ -108,8 +108,8 @@ const { cssR, styledR, styledHOC } = styledBreak(config)
 `styledBreak` creates a `cssR` helper function plus 2 HOC `styledR` and `styledHOC`.
 
 * config(required): object made of `breakpoints` and `sLevel` props.
-  * breakpoints(required): you can define as many breakpoints you want, however please avoid including underscore `_` in props name. The value should be the **minimum** value of your breakpoint (the unit is `px`).
-  * sLevel(optional): is your class specificity level, default value is `1`. You can nest specificity level in the tagged template literal to have finer control on class specificity.
+  * breakpoints(optional): default value is bootstrap breakpoint. You can define as many breakpoints you want, however please **avoid** including underscore `_` in props name. The value should be the **minimum** value of your breakpoint (the unit is `px`).
+  * sLevel(optional): is your class specificity level, default value is `one`. You can nest specificity level in the tagged template literal to have finer control on class specificity level.
   
 ### 2. styledCss
 
@@ -119,10 +119,12 @@ here is how you do max, min, only, and between width:
 
 ### min
 
-don't append anything to the breakpoint prop name:
+append `_n` or `nothing` anything to the breakpoint prop name:
 
 ```jsx
 {xs:`width: 100px;`}
+or
+{xs_n:`width: 100px;`}
 ```
 
 which translate into
@@ -173,10 +175,12 @@ it takes `xs` **min** width and `md` **max** width.
 
 ### only
 
-append `_o` to the breakpoint prop name:
+append `_o` or `_theSameBreakpointName` to the breakpoint prop name:
 
 ```jsx
 {xs_o:`width: 100px;`}
+or
+{xs_xs:`width: 100px;`}
 ```
 
 which translate into
@@ -189,6 +193,10 @@ which translate into
 
 It takes `xs` **min** width and `xs` **max** width.
 
+### default
+
+if the breakpoint doesn't exist, such as appending `_randomZT2t2`, there would be no 2nd media query, which mean, it has only `min` media query.
+
 ### Without Media Query
 
 `styledCss` can also be just pure string without any breakpoint needed, which mean the style is applied without any media query.
@@ -199,7 +207,7 @@ const styledCss = `width: 100px;`
 
 ### Function Interpolation
 
-Of course you can also interpolate function just like you do in Styled Component (because that is the whole point), however you need Styled Component `css` helper function.
+Of course you can also interpolate function just like you do in Styled Component (because that is the whole point), simply use Styled Component `css` helper function.
 
 ```jsx
 import {css} from styled-components

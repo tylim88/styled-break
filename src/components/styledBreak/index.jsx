@@ -14,16 +14,16 @@ const mediaParser = (
 	}
 
 	const minMedia = `@media (min-width: ${targetPointValue}px)`
-	const maxMedia = `@media (max-width: ${getMaxWidth(targetPointValue)}px)`
+	const maxWidth = getMaxWidth(targetPointValue)
 	switch (direction) {
 		case '':
+		case 'n':
 			return minMedia
 		case 'm':
-			return maxMedia
-		case 'o':
-			return `${minMedia} and ${maxMedia}`
+			return `@media (max-width: ${maxWidth}px)`
 		default: {
-			const targetPointValue2 = sortedBreakpoints[direction]
+			const targetPointValue2 =
+				sortedBreakpoints[direction] || direction === 'o' ? maxWidth : false
 			if (targetPointValue2) {
 				return `${minMedia} and (max-width: ${getMaxWidth(
 					targetPointValue2
@@ -40,12 +40,20 @@ const responsiveStyledGenerator = config => {
 
 	const sLevel_ = sLevel || 1
 
-	const sortedBreakpoints = Object.keys(breakpoints)
+	const breakpoint_ = breakpoints || {
+		xs: 0,
+		sm: 576,
+		md: 768,
+		lg: 992,
+		xl: 1200,
+	}
+
+	const sortedBreakpoints = Object.keys(breakpoint_)
 		.sort((a, b) => {
-			return breakpoints[a] - breakpoints[b]
+			return breakpoint_[a] - breakpoint_[b]
 		})
 		.reduce((acc, key) => {
-			acc[key] = breakpoints[key]
+			acc[key] = breakpoint_[key]
 			return acc
 		}, {})
 
@@ -74,6 +82,7 @@ const responsiveStyledGenerator = config => {
 					]
 				}
 			}
+			console.log(cssString.join(''))
 			return cssString
 		} else {
 			return ''
