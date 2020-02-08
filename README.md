@@ -109,7 +109,7 @@ const { cssR, styledR, styledHOC } = styledBreak(config)
 
 * config(required): object made of `breakpoints` and `sLevel` props.
   * breakpoints(optional): default value is bootstrap breakpoint. You can define as many breakpoints you want, however please **avoid** including underscore `_` in props name. The value should be the **minimum** value of your breakpoint (the unit is `px`).
-  * sLevel(optional): is your class specificity level, default value is `one`. You can nest specificity level in the tagged template literal to have finer control on class specificity level.
+  * sLevel(optional): is global setting of class specificity level, default value is `one`. You can nest specificity level individually to have finer control on class specificity level.
   
 ### 2. styledCss
 
@@ -230,16 +230,28 @@ const styledCss = css`${ props=> `width: ${ props.width }px;` }`
 
 ```
 
+### Class Specificity Level
+
+On top of the septicity you set, you can control individual css property specificity level, the end result is global specificity level times individual specificity level.
+
+```jsx
+// if your global specificity level is 3
+const styledCss = {
+  xs:`&&{width: 100px;}`, // the total specificity level is 2*3 = 6
+  md:`width: 200px;` // the total specificity level is 3
+  }
+```
+
 you don't need `css` helper if you are not doing function interpolation.
 
 ## Create Responsive Styled Component
 
-### 1. styledHOC(component)(sLevel)  <--Recommended
+### 1. styledHOC(component)(level)  <--Recommended
 
 creates a component that accept `styledCSS` prop that take `styledCSS` object (see [styledCss](https://github.com/tylim88/styled-break#styledcss) for more information).
 
 * component(required): the component can be Html or React component, see below code for example
-* sLevel: override the `sLevel` pass to `styledBreak`, the default value is `styledBreak`'s `sLevel`.
+* level: override the `sLevel` pass to `styledBreak`, the default value is `styledBreak`'s `sLevel`.
 
 ```jsx
 import { css } from 'styled-components'
@@ -272,13 +284,13 @@ const Demo = () => {
 
 keep in mind to always use `css` helper to interpolate the function.
 
-### 2. styledR(component)(styledCss)(sLevel)
+### 2. styledR(component)(styledCss)(level)
 
 styledR is basically an extended `styled` of Styled Component
 
-* component(required): same as component object described in [styledHOC](https://github.com/tylim88/styled-break#styledhoccomponentslevel).
-* styledCss(required): same as styledCss object described in [styledCss](https://github.com/tylim88/styled-break#styledcss).
-* sLevel(optional):  same as sLevel number described in [styledHOC](https://github.com/tylim88/styled-break#styledhoccomponentslevel).
+* component(required): same as `component` object described in [styledHOC](https://github.com/tylim88/styled-break#styledhoccomponentslevel).
+* styledCss(required): same as `styledCss` object described in [styledCss](https://github.com/tylim88/styled-break#styledcss).
+* level(optional):  same as `level` number described in [styledHOC](https://github.com/tylim88/styled-break#styledhoccomponentslevel).
 
 usage example
 
@@ -290,11 +302,12 @@ const DivStyled = styledR('div')({xs_o: css`${props=> `width: ${props.width}px;`
 const ButtonStyled = styledR(Button)(`width: 100px;`)(2)
 ```
 
-### 3. cssR(styledCss)
+### 3. cssR(styledCss,level)
 
 if you don't like to create responsive styled component with `styledR` or `styledHOC` and you want to use the convention `styled` api of Styled Component, then this is what you need.
 
 * styledCss(required): same as styledCss object described in [styledCss](https://github.com/tylim88/styled-break#styledcss).
+* level(optional):  same as `level` number described in [styledHOC](https://github.com/tylim88/styled-break#styledhoccomponentslevel).
 
 ```jsx
 import styled, { css } from 'styled-components'
@@ -305,7 +318,10 @@ const DivStyled = styled.div`
         sm_md: `width:200px;
         xl: css`${props =>
             `width:${props.width}px;`
-      })}
+            }
+      }
+      ,3 // specificity level (optional)
+      )}
 `
 ```
 

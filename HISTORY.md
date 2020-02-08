@@ -1,5 +1,10 @@
 # Change log
 
+## 0.1.5
+
+1. allow cssR to accept specificity arguments.
+2. update readme
+
 ## 0.1.4
 
 1. export also `css` helper function

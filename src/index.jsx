@@ -31,7 +31,7 @@ const Demo = () => {
 				width:200px;
 				height:200px;
 				background-color:red;`,
-				xl: css`
+				xl_xl: css`
 					${props =>
 						`width:${props.maxWidth}px;
 				height:300px;

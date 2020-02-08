@@ -58,7 +58,7 @@ const styledBreak = config => {
 			return acc
 		}, {})
 
-	const cssR = (styledCss = '') => {
+	const cssS = (styledCss = '') => {
 		const type = typeof styledCss
 		if (type === 'string' || Array.isArray(styledCss)) {
 			return styledCss
@@ -92,22 +92,22 @@ const styledBreak = config => {
 	const isComponentHtml = component =>
 		typeof component === 'string' ? styled[component] : styled(component)
 
-	const specificityWrapper = (styledCss = '', level = sLevel_) => css`
+	const cssR = (styledCss = '', level = sLevel_) => css`
 		${'&'.repeat(level)} {
-			${cssR(styledCss)}
+			${cssS(styledCss)}
 		}
 	`
 
 	const styledR = comp => (styledCss = '', level = sLevel_) => {
 		return isComponentHtml(comp)`
-	${specificityWrapper(styledCss, level)}
+	${cssR(styledCss, level)}
 	`
 	}
 	const styledHOC = comp => (level = sLevel_) => {
 		return isComponentHtml(comp)`
 			${props => {
 				const { styledCss } = props
-				return specificityWrapper(styledCss, level)
+				return cssR(styledCss, level)
 			}}
 		`
 	}
