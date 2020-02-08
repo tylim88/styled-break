@@ -130,9 +130,9 @@ here is how you do max, min, only, and between width:
 append `_n` or `nothing` anything to the breakpoint prop name:
 
 ```jsx
-const styledCss = {xs:`width: 100px;`}
+const styledCss = { xs:`width: 100px;` }
 or
-const styledCss = {xs_n:`width: 100px;`}
+const styledCss = { xs_n:`width: 100px;` }
 ```
 
 which equivalent to
@@ -148,7 +148,7 @@ which equivalent to
 append `_m` to the breakpoint prop name:
 
 ```jsx
-const styledCss = {sm_m:`width: 100px;`}
+const styledCss = { sm_m:`width: 100px;` }
 ```
 
 which equivalent to
@@ -168,7 +168,7 @@ if there is no next breakpoint, the value is `999999`
 append `_anotherBreakpointName` to the breakpoint prop name:
 
 ```jsx
-const styledCss = {xs_sm:`width: 100px;`}
+const styledCss = { xs_sm:`width: 100px;` }
 ```
 
 which equivalent to
@@ -186,9 +186,9 @@ it takes `xs` **min** width and `md` **max** width.
 append `_o` or `_theSameBreakpointName` to the breakpoint prop name:
 
 ```jsx
-const styledCss = {xs_o:`width: 100px;`}
+const styledCss = { xs_o:`width: 100px;` }
 or
-const styledCss = {xs_xs:`width: 100px;`}
+const styledCss = { xs_xs:`width: 100px;` }
 ```
 
 which equivalent to
@@ -222,10 +222,10 @@ Of course you can also interpolate function just like you do in Styled Component
 ```jsx
 import {css} from styled-components
 
-const styledCss = {xs_o: css`${props=> `width: ${props.width}px;`}`}
+const styledCss = {xs_o: css`${ props=> `width: ${ props.width }px;` }`}
 
 // or without any breakpoint
-const styledCss = css`${props=> `width: ${props.width}px;`}`
+const styledCss = css`${ props=> `width: ${ props.width }px;` }`
 
 ```
 
