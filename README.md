@@ -288,7 +288,7 @@ const Demo = () => {
 
 keep in mind to always use `css` helper to interpolate the function.
 
-### 2. styledR(component)(styledCss)(level)
+### 2. styledR(component)(styledCss,level)
 
 styledR is basically an extended `styled` of Styled Component
 
@@ -300,10 +300,10 @@ usage example
 
 ```jsx
 // to create styled html component
-const DivStyled = styledR('div')({xs_o: css`${props=> `width: ${props.width}px;`}`})(1)
+const DivStyled = styledR('div')({xs_o: css`${props=> `width: ${props.width}px;`}`},1)
 
 // to create a styled react component
-const ButtonStyled = styledR(Button)(`width: 100px;`)(2)
+const ButtonStyled = styledR(Button)(`width: 100px;`,2)
 ```
 
 ### 3. cssR(styledCss,level)

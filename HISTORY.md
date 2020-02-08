@@ -1,5 +1,9 @@
 # Change log
 
+## 0.1.6
+
+- fix wrong documentation about `styledR` api.
+
 ## 0.1.5
 
 1. allow cssR to accept specificity arguments.
