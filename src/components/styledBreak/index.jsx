@@ -23,9 +23,8 @@ const mediaParser = (
 			return `@media (max-width: ${maxWidth}px)`
 		default: {
 			const targetPointValue2 =
-				sortedBreakpoints[direction] || direction === 'o'
-					? targetPointValue
-					: false
+				sortedBreakpoints[direction] ||
+				(direction === 'o' ? targetPointValue : false)
 			if (targetPointValue2) {
 				return `${minMedia} and (max-width: ${getMaxWidth(
 					targetPointValue2
