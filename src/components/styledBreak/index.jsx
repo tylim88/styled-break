@@ -36,7 +36,7 @@ const mediaParser = (
 	}
 }
 
-const responsiveStyledGenerator = config => {
+const styledBreak = config => {
 	const { breakpoints, sLevel } = config
 
 	const sLevel_ = sLevel || 1
@@ -115,4 +115,4 @@ const responsiveStyledGenerator = config => {
 	return { cssR, styledR, styledHOC }
 }
 
-export default responsiveStyledGenerator
+export { styledBreak as default, css }

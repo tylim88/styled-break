@@ -220,7 +220,7 @@ const styledCss = `width: 100px;`
 Of course you can also interpolate function just like you do in Styled Component (because that is the whole point), simply use Styled Component `css` helper function.
 
 ```jsx
-import {css} from styled-components
+import {css} from 'styled-components'
 
 // with breakpoints
 const styledCss = {xs_o: css`${ props=> `width: ${ props.width }px;` }`}
@@ -243,6 +243,8 @@ creates a component that accept `styledCSS` prop that take `styledCSS` object (s
 
 ```jsx
 import { css } from 'styled-components'
+//or you also could import it from styled-break
+// import { css } from 'styled-break'
 
 // to create styled html component
 const DivStyled = styledHOC('div')(1)
