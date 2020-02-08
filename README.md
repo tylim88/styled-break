@@ -39,7 +39,7 @@ const DivStyled = styledHOC('div')()
 const Demo = () => {
   return (
     <DivStyled
-      maxWidth='500'
+      width='500'
       styledCss={{
         xs_m: `width:100px;
         height:100px;
@@ -50,7 +50,7 @@ const Demo = () => {
         background-color:red;`,
         xl: css`
           ${props =>
-            `width:${props.maxWidth}px;
+            `width:${props.width}px;
         height:300px;
         background-color:purple;`}
         `,
@@ -117,7 +117,7 @@ const { cssR, styledR, styledHOC } = styledBreak(config)
 const styledCss = {
   xs_m: `width:100px;`,
   sm_md: `width:200px;`,
-  xl: css`${props =>`width:${props.maxWidth}px;`}`,
+  xl: css`${props =>`width:${props.width}px;`}`,
 }
 ```
 
@@ -222,6 +222,7 @@ Of course you can also interpolate function just like you do in Styled Component
 ```jsx
 import {css} from styled-components
 
+// with breakpoints
 const styledCss = {xs_o: css`${ props=> `width: ${ props.width }px;` }`}
 
 // or without any breakpoint
@@ -250,15 +251,19 @@ const DivStyled = styledHOC('div')(1)
 const ButtonStyled = styledHOC(Button)(2)
 
 const Demo = () => {
-  return (
+  return (<>
+    <ButtonStyled
+      styledCss=`width: 100px;`
+    />
     <DivStyled
-      maxWidth='500'
+      width='500'
       styledCss={{
         xs_m: `width:100px;`,
         sm_md: `width:200px;`,
-        xl: css`${props =>`width:${props.maxWidth}px;`}`,
+        xl: css`${props =>`width:${props.width}px;`}`,
       }}
     />
+  </>
   )
 }
 ```
@@ -285,7 +290,7 @@ const ButtonStyled = styledR(Button)(`width: 100px;`)(2)
 
 ### 3. cssR(styledCss)
 
-if you don't like to create responsive styled component with `styledR` or `styledHOC`, you want to use `styled` api of Styled Component, then this is what you need.
+if you don't like to create responsive styled component with `styledR` or `styledHOC` and you want to use the convention `styled` api of Styled Component, then this is what you need.
 
 * styledCss(required): same as styledCss object described in [styledCss](https://github.com/tylim88/styled-break#styledcss).
 
@@ -297,7 +302,7 @@ const DivStyled = styled.div`
         xs_m: `width:100px;`
         sm_md: `width:200px;
         xl: css`${props =>
-            `width:${props.maxWidth}px;`
+            `width:${props.width}px;`
       })}
 `
 ```
