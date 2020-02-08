@@ -1,0 +1,13 @@
+.gitignore
+.neutrinorc.js
+.npmignore
+
+jest.config.js
+webpack.config.js
+package-lock.json
+
+node_modules
+src
+test
+
+build/styledBreak.js.map

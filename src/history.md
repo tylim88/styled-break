@@ -1,5 +1,9 @@
 # Change log
 
+## 0.1.8 - 0.1.11
+
+- add and test .npmignore, no change to source code
+
 ## 0.1.7
 
 - fix anchor in doc.
