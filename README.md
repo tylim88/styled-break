@@ -2,6 +2,10 @@
 
 🍨 Create your responsive styled components with breeze using custom [Styled Components](https://www.npmjs.com/package/styled-components) HOC!
 
+* minimalist api
+* component approach
+* 0 dependency
+
 ## Installation
 
 ```bash
