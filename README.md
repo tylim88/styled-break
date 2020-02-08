@@ -292,9 +292,9 @@ keep in mind to always use `css` helper to interpolate the function.
 
 styledR is basically an extended `styled` of Styled Component
 
-* component(required): same as `component` object described in [styledHOC](#1-styledhoccomponentslevel).
+* component(required): same as `component` object described in [styledHOC](#1-styledhoccomponentlevel----recommended).
 * styledCss(required): same as `styledCss` object described in [styledCss](#2-styledcss).
-* level(optional):  same as `level` number described in [styledHOC](#1-styledhoccomponentslevel).
+* level(optional):  same as `level` number described in [styledHOC](#1-styledhoccomponentlevel----recommended).
 
 usage example
 
@@ -311,7 +311,7 @@ const ButtonStyled = styledR(Button)(`width: 100px;`,2)
 if you don't like to create responsive styled component with `styledR` or `styledHOC` and you want to use the convention `styled` api of Styled Component, then this is what you need.
 
 * styledCss(required): same as styledCss object described in [styledCss](#2-styledcss).
-* level(optional):  same as `level` number described in [styledHOC](#1-styledhoccomponentslevel).
+* level(optional):  same as `level` number described in [styledHOC](#1-styledhoccomponentlevel----recommended).
 
 ```jsx
 import styled, { css } from 'styled-components'
