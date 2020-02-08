@@ -252,7 +252,7 @@ you don't need `css` helper if you are not doing function interpolation.
 
 ### 1. styledHOC(component)(level)  <--Recommended
 
-creates a component that accept `styledCSS` prop that take `styledCSS` object (see [styledCss](https://github.com/tylim88/styled-break#styledcss) for more information).
+creates a component that accept `styledCSS` prop that take `styledCSS` object (see [styledCss](2-styledcss) for more information).
 
 * component(required): the component can be Html or React component, see below code for example
 * level(optional): override the `sLevel` pass to `styledBreak`, the default value is `styledBreak`'s `sLevel`.
@@ -292,9 +292,9 @@ keep in mind to always use `css` helper to interpolate the function.
 
 styledR is basically an extended `styled` of Styled Component
 
-* component(required): same as `component` object described in [styledHOC](https://github.com/tylim88/styled-break#styledhoccomponentslevel).
-* styledCss(required): same as `styledCss` object described in [styledCss](https://github.com/tylim88/styled-break#styledcss).
-* level(optional):  same as `level` number described in [styledHOC](https://github.com/tylim88/styled-break#styledhoccomponentslevel).
+* component(required): same as `component` object described in [styledHOC](1-styledhoccomponentslevel).
+* styledCss(required): same as `styledCss` object described in [styledCss](2-styledcss).
+* level(optional):  same as `level` number described in [styledHOC](1-styledhoccomponentslevel).
 
 usage example
 
@@ -310,8 +310,8 @@ const ButtonStyled = styledR(Button)(`width: 100px;`,2)
 
 if you don't like to create responsive styled component with `styledR` or `styledHOC` and you want to use the convention `styled` api of Styled Component, then this is what you need.
 
-* styledCss(required): same as styledCss object described in [styledCss](https://github.com/tylim88/styled-break#styledcss).
-* level(optional):  same as `level` number described in [styledHOC](https://github.com/tylim88/styled-break#styledhoccomponentslevel).
+* styledCss(required): same as styledCss object described in [styledCss](2-styledcss).
+* level(optional):  same as `level` number described in [styledHOC](1-styledhoccomponentslevel).
 
 ```jsx
 import styled, { css } from 'styled-components'

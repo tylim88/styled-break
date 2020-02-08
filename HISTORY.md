@@ -1,5 +1,9 @@
 # Change log
 
+## 0.1.7
+
+- fix anchor in doc.
+
 ## 0.1.6
 
 - fix wrong documentation about `styledR` api.
