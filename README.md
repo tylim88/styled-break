@@ -205,7 +205,7 @@ It takes `xs` **min** width and `xs` **max** width.
 
 if the 1st breakpoint doesn't exist, the whole media query doesn't exist, no style would be applied.
 
-if the 1st breakpoint exist 2nd breakpoint doesn't exist, such as appending `_randomZT2t2`, there would be no 2nd media query, which mean, it has only `min` media query.
+if the 1st breakpoint exist but 2nd breakpoint doesn't exist, such as appending `_randomZT2t2`, there would be no 2nd media query, which mean, it has only `min` media query.
 
 ### Without Media Query
 
