@@ -255,7 +255,7 @@ you don't need `css` helper if you are not doing function interpolation.
 creates a component that accept `styledCSS` prop that take `styledCSS` object (see [styledCss](#2-styledcss) for more information).
 
 * component(required): the component can be Html or React component, see below code for example
-* level(optional): override the `sLevel` pass to `styledBreak`, the default value is `styledBreak`'s `sLevel`.
+* level(optional): override the `sLevel` pass to [styledBreak](#1-styledbreakconfig), the default value is `styledBreak`'s `sLevel`.
 
 ```jsx
 import { css } from 'styled-components'
