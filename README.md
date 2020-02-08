@@ -63,7 +63,7 @@ render(<Demo />, document.getElementById('root'))
 
 ```
 
-Above responsive code translate into
+which is equivalent to
 
 ```css
 @media (max-width: 500.98px) {
@@ -127,7 +127,7 @@ or
 {xs_n:`width: 100px;`}
 ```
 
-which translate into
+which equivalent to
 
 ```css
 @media (min-width: 0px) {
@@ -143,7 +143,7 @@ append `_m` to the breakpoint prop name:
 {sm_m:`width: 100px;`}
 ```
 
-which translate into
+which equivalent to
 
 ```css
 @media (max-width: 576px) {
@@ -163,7 +163,7 @@ append `_anotherBreakpointName` to the breakpoint prop name:
 {xs_sm:`width: 100px;`}
 ```
 
-which translate into
+which equivalent to
 
 ```css
 @media (min-width: 0px) and (max-width: 767.98px) {
@@ -183,7 +183,7 @@ or
 {xs_xs:`width: 100px;`}
 ```
 
-which translate into
+which equivalent to
 
 ```css
 @media (min-width: 0px) and (max-width: 575.98px) {
