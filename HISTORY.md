@@ -1,5 +1,9 @@
 # Change log
 
+## 0.1.3
+
+- update readme
+
 ## 0.1.2
 
 - fix logic error of between
