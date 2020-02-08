@@ -1,4 +1,10 @@
-# 0.1.0
+# Change log
+
+## 0.1.1
+
+- fix bug where max is always 999999
+
+## 0.1.0
 
 1. fix `o` not working
 2. add `n` and `sameBreakPoint` query

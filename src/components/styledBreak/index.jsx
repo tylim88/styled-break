@@ -23,7 +23,9 @@ const mediaParser = (
 			return `@media (max-width: ${maxWidth}px)`
 		default: {
 			const targetPointValue2 =
-				sortedBreakpoints[direction] || direction === 'o' ? maxWidth : false
+				sortedBreakpoints[direction] || direction === 'o'
+					? targetPointValue
+					: false
 			if (targetPointValue2) {
 				return `${minMedia} and (max-width: ${getMaxWidth(
 					targetPointValue2
@@ -82,7 +84,6 @@ const responsiveStyledGenerator = config => {
 					]
 				}
 			}
-			console.log(cssString.join(''))
 			return cssString
 		} else {
 			return ''
