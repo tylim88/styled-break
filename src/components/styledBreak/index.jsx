@@ -114,4 +114,11 @@ const styledBreak = (config = {}) => {
 	return { cssR, styledR, styledHOC }
 }
 
-export { styledBreak as default, css, getMaxWidth, getMediaQuery }
+export {
+	styledBreak as default,
+	css,
+	getMaxWidth,
+	getMediaQuery,
+	objSort,
+	styled,
+}

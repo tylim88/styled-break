@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test styledBreak test styledR test snapshot 1`] = `
+exports[`test styledBreak test cssR test snapshot 1`] = `
 @media (min-width:0px) {
   .c0 {
     color: red;
@@ -18,7 +18,7 @@ exports[`test styledBreak test styledR test snapshot 1`] = `
 />
 `;
 
-exports[`test styledBreak test styledR test snapshot 2`] = `
+exports[`test styledBreak test styleHOC test snapshot 1`] = `
 @media (min-width:0px) {
   .c0 {
     color: red;
@@ -33,5 +33,25 @@ exports[`test styledBreak test styledR test snapshot 2`] = `
 
 <button
   className="c0"
+  color="yellow"
+/>
+`;
+
+exports[`test styledBreak test styledR test snapshot 1`] = `
+@media (min-width:0px) {
+  .c0 {
+    color: red;
+  }
+}
+
+@media (min-width:768px) and (max-width:1199.98px) {
+  .c0 {
+    color: yellow;
+  }
+}
+
+<button
+  className="c0"
+  color="red"
 />
 `;
