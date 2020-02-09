@@ -1,5 +1,7 @@
 # styled-break
 
+[![tylim88](https://circleci.com/gh/tylim88/styled-break.svg?style=svg)](<[LINK](https://github.com/tylim88/styled-break#styled-break)>)  ![GitHub](https://img.shields.io/github/license/tylim88/styled-break) ![npm](https://img.shields.io/npm/v/styled-break)
+
 🍨 Create your responsive styled components with breeze using custom [Styled Components](https://www.npmjs.com/package/styled-components) HOC!
 
 * minimalist api

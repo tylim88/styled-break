@@ -1,6 +1,6 @@
 {
 	"name": "styled-break",
-	"version": "0.2.0",
+	"version": "1.0.0",
 	"description": "🍨 Create Responsive Styled Components With Breeze!",
 	"main": "build/styledBreak.js",
 	"files": [
