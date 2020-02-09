@@ -1,20 +1,20 @@
 import styled, { css } from 'styled-components'
 
-const mediaParser = (
+const getMaxWidth = (minWidthArr, minWidth) => {
+	const result = minWidthArr[minWidthArr.indexOf(minWidth) + 1]
+	return result ? result - 0.02 : 999999
+}
+
+const getMediaQuery = (
 	direction = '',
 	sortedBreakpoints = {},
 	targetPoint = ''
 ) => {
-	const targetPointValue = sortedBreakpoints[targetPoint]
+	const minWidth = sortedBreakpoints[targetPoint]
+	const minWidthArr = Object.values(sortedBreakpoints)
 
-	const getMaxWidth = targetPointValue => {
-		const values = Object.values(sortedBreakpoints)
-		const result = values[values.indexOf(targetPointValue) + 1]
-		return result ? result - 0.02 : 999999
-	}
-
-	const minMedia = `@media (min-width: ${targetPointValue}px)`
-	const maxWidth = getMaxWidth(targetPointValue)
+	const minMedia = `@media (min-width: ${minWidth}px)`
+	const maxWidth = getMaxWidth(minWidthArr, minWidth)
 	switch (direction) {
 		case '':
 		case 'n':
@@ -22,12 +22,12 @@ const mediaParser = (
 		case 'm':
 			return `@media (max-width: ${maxWidth}px)`
 		default: {
-			const targetPointValue2 =
-				sortedBreakpoints[direction] ||
-				(direction === 'o' ? targetPointValue : false)
-			if (targetPointValue2) {
+			const minWidth2 =
+				sortedBreakpoints[direction] || (direction === 'o' ? minWidth : false)
+			if (minWidth2) {
 				return `${minMedia} and (max-width: ${getMaxWidth(
-					targetPointValue2
+					minWidthArr,
+					minWidth2
 				)}px)`
 			} else {
 				return minMedia
@@ -36,12 +36,22 @@ const mediaParser = (
 	}
 }
 
+const objSort = obj =>
+	Object.keys(obj)
+		.sort((a, b) => {
+			return obj[a] - obj[b]
+		})
+		.reduce((acc, key) => {
+			acc[key] = obj[key]
+			return acc
+		}, {})
+
 const styledBreak = config => {
 	const { breakpoints, sLevel } = config
 
 	const sLevel_ = sLevel || 1
 
-	const breakpoint_ = breakpoints || {
+	const breakpoints_ = breakpoints || {
 		xs: 0,
 		sm: 576,
 		md: 768,
@@ -49,14 +59,7 @@ const styledBreak = config => {
 		xl: 1200,
 	}
 
-	const sortedBreakpoints = Object.keys(breakpoint_)
-		.sort((a, b) => {
-			return breakpoint_[a] - breakpoint_[b]
-		})
-		.reduce((acc, key) => {
-			acc[key] = breakpoint_[key]
-			return acc
-		}, {})
+	const sortedBreakpoints = objSort(breakpoints_)
 
 	const cssS = (styledCss = '') => {
 		const type = typeof styledCss
@@ -65,17 +68,16 @@ const styledBreak = config => {
 		} else if (type === 'object' && styledCss) {
 			let cssString = []
 			for (const prop in styledCss) {
-				const split = prop.split('_')
-				const targetPoint = split[0]
+				const [targetPoint, direction] = prop.split('_')
 				if (
 					styledCss[prop] !== undefined &&
 					sortedBreakpoints[targetPoint] !== undefined
 				) {
-					const direction = split[1] || ''
+					const direction_ = direction || ''
 					cssString = [
 						...cssString,
 						`
-						${mediaParser(direction, sortedBreakpoints, targetPoint)} {`,
+						${getMediaQuery(direction_, sortedBreakpoints, targetPoint)} {`,
 						styledCss[prop],
 						`
 					}
@@ -89,9 +91,6 @@ const styledBreak = config => {
 		}
 	}
 
-	const isComponentHtml = component =>
-		typeof component === 'string' ? styled[component] : styled(component)
-
 	const cssR = (styledCss = '', level = sLevel_) => css`
 		${'&'.repeat(level)} {
 			${cssS(styledCss)}
@@ -99,12 +98,12 @@ const styledBreak = config => {
 	`
 
 	const styledR = comp => (styledCss = '', level = sLevel_) => {
-		return isComponentHtml(comp)`
-	${cssR(styledCss, level)}
-	`
+		return styled(comp)`
+			${cssR(styledCss, level)}
+		`
 	}
 	const styledHOC = comp => (level = sLevel_) => {
-		return isComponentHtml(comp)`
+		return styled(comp)`
 			${props => {
 				const { styledCss } = props
 				return cssR(styledCss, level)
@@ -115,4 +114,4 @@ const styledBreak = config => {
 	return { cssR, styledR, styledHOC }
 }
 
-export { styledBreak as default, css }
+export { styledBreak as default, css, getMaxWidth, getMediaQuery }
