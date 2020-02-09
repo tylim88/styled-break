@@ -1,5 +1,9 @@
 # Change log
 
+## 1.0.0
+
+- add badges
+
 ## 0.1.12
 
 - change license to MIT
