@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test styledBreak test styledR test snapshot 1`] = `
+@media (min-width:0px) {
+  .c0 {
+    color: red;
+  }
+}
+
+@media (min-width:768px) and (max-width:1199.98px) {
+  .c0 {
+    color: yellow;
+  }
+}
+
+<button
+  className="c0"
+/>
+`;
+
+exports[`test styledBreak test styledR test snapshot 2`] = `
+@media (min-width:0px) {
+  .c0 {
+    color: red;
+  }
+}
+
+@media (min-width:768px) and (max-width:1199.98px) {
+  .c0 {
+    color: yellow;
+  }
+}
+
+<button
+  className="c0"
+/>
+`;

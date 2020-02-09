@@ -1,4 +1,7 @@
+import React from 'react'
 import styledBreak, { getMaxWidth, getMediaQuery } from './index'
+import 'jest-styled-components'
+import { create } from 'react-test-renderer'
 
 const gap = 0.02
 const infinity = 999999
@@ -82,6 +85,85 @@ describe('test utilities', () => {
 					targetPoint_
 				)
 				expect(mediaQuery).toBe(answer[i])
+			})
+		})
+	})
+})
+
+describe('test styledBreak', () => {
+	const { cssR, styledR, styledHOC } = styledBreak({
+		xs: 0,
+		sm: 576,
+		xl: 1200,
+		md: 768,
+		lg: 992,
+	})
+	describe('test output is function', () => {
+		const funcArr = [cssR, styledR, styledHOC]
+
+		funcArr.forEach(func => {
+			it(`test existence of ${func.name}`, () => {
+				expect.assertions(1)
+				expect(typeof func).toBe('function')
+			})
+		})
+	})
+
+	describe('test styledR', () => {
+		const Button = styledR('button')({
+			xs: 'color: red',
+			md_lg: 'color: yellow',
+		})
+
+		it('test snapshot', () => {
+			expect.assertions(1)
+			const tree = create(<Button />).toJSON()
+			expect(tree).toMatchSnapshot()
+		})
+
+		it('test hasStyle', () => {
+			expect.assertions(4)
+			const tree = create(<Button />).toJSON()
+			expect(tree).toHaveStyleRule('color', 'red', {
+				media: '(min-width:0px)',
+			})
+			expect(tree).toHaveStyleRule('color', 'yellow', {
+				media: '(min-width:768px) and (max-width:1199.98px)',
+			})
+		})
+	})
+
+	describe('test styledR', () => {
+		const Button = styledHOC('button')()
+
+		it('test snapshot', () => {
+			expect.assertions(1)
+			const tree = create(
+				<Button
+					styledCss={{
+						xs: 'color: red',
+						md_lg: 'color: yellow',
+					}}
+				/>
+			).toJSON()
+			expect(tree).toMatchSnapshot()
+		})
+
+		it('test hasStyle', () => {
+			expect.assertions(4)
+			const tree = create(
+				<Button
+					styledCss={{
+						xs: 'color: red',
+						md_lg: 'color: yellow',
+					}}
+				/>
+			).toJSON()
+			expect(tree).toHaveStyleRule('color', 'red', {
+				media: '(min-width:0px)',
+			})
+			expect(tree).toHaveStyleRule('color', 'yellow', {
+				media: '(min-width:768px) and (max-width:1199.98px)',
 			})
 		})
 	})

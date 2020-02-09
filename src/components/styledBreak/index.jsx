@@ -36,7 +36,7 @@ const getMediaQuery = (
 	}
 }
 
-const objSort = obj =>
+const objSort = (obj = {}) =>
 	Object.keys(obj)
 		.sort((a, b) => {
 			return obj[a] - obj[b]
@@ -46,7 +46,7 @@ const objSort = obj =>
 			return acc
 		}, {})
 
-const styledBreak = config => {
+const styledBreak = (config = {}) => {
 	const { breakpoints, sLevel } = config
 
 	const sLevel_ = sLevel || 1

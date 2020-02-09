@@ -1,6 +1,6 @@
 {
 	"name": "styled-break",
-	"version": "1.0.0",
+	"version": "0.2.0",
 	"description": "🍨 Create Responsive Styled Components With Breeze!",
 	"main": "build/styledBreak.js",
 	"files": [
@@ -11,6 +11,7 @@
 		"url": "https://github.com/tylim88/styled-break"
 	},
 	"scripts": {
+		"install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm i",
 		"test": "jest",
 		"coverage": "jest --coverage",
 		"test:watch": "jest --watch",
@@ -51,6 +52,7 @@
 		"eslint-plugin-react-hooks": "^1.7.0",
 		"husky": "^4.2.1",
 		"jest": "^25.1.0",
+		"jest-styled-components": "^7.0.0",
 		"neutrino": "^9.1.0",
 		"prettier": "^1.19.1",
 		"prettier-quick": "0.0.5",

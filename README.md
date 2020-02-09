@@ -111,7 +111,7 @@ const { cssR, styledR, styledHOC } = styledBreak(config)
 
 `styledBreak` creates a `cssR` helper function plus 2 HOC `styledR` and `styledHOC`.
 
-* config(required): object made of `breakpoints` and `sLevel` props.
+* config(optional): object made of `breakpoints` and `sLevel` props.
   * breakpoints(optional): default value is bootstrap breakpoint. You can define as many breakpoints you want, however please **avoid** including underscore `_` in props name. The value should be the **minimum** value of your breakpoint (the unit is `px`).
   * sLevel(optional): is global setting of class specificity level, default value is `one`. You can nest specificity level individually to have finer control on class specificity level.
   
