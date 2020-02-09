@@ -1,8 +1,11 @@
 {
 	"name": "styled-break",
-	"version": "0.1.11",
+	"version": "0.1.13",
 	"description": "🍨 Create Responsive Styled Components With Breeze!",
 	"main": "build/styledBreak.js",
+	"files": [
+		"build/styledBreak.js"
+	],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/tylim88/styled-break"
@@ -22,7 +25,7 @@
 		"breakpoint",
 		"width"
 	],
-	"license": "ISC",
+	"license": "MIT",
 	"peerDependencies": {
 		"styled-components": "^5"
 	},

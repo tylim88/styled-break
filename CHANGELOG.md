@@ -1,5 +1,9 @@
 # Change log
 
+## 0.1.12
+
+- change license to MIT
+
 ## 0.1.8 - 0.1.11
 
 - add and test .npmignore, no change to source code
