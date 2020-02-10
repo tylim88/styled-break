@@ -7,6 +7,7 @@
 * minimalist api
 * component approach
 * 0 dependency
+* tested
 
 ## Installation
 
