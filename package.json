@@ -24,10 +24,11 @@
 	"keywords": [
 		"react",
 		"styled-components",
-		"css",
+		"css in js",
 		"responsive",
 		"breakpoint",
-		"width"
+		"width",
+		"media-query"
 	],
 	"license": "MIT",
 	"peerDependencies": {
