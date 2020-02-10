@@ -1,6 +1,6 @@
 # styled-break
 
-![npm](https://img.shields.io/npm/v/styled-break)  ![GitHub](https://img.shields.io/github/license/tylim88/styled-break) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/tylim88/styled-break/pulls) [![tylim88](https://circleci.com/gh/tylim88/styled-break.svg?style=svg)](<[LINK](https://github.com/tylim88/styled-break#styled-break)>)
+[![npm](https://img.shields.io/npm/v/styled-break)](https://www.npmjs.com/package/styled-break)  [![GitHub](https://img.shields.io/github/license/tylim88/styled-break)](https://github.com/tylim88/styled-break/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/tylim88/styled-break/pulls) [![tylim88](https://circleci.com/gh/tylim88/styled-break.svg?style=svg)](<[LINK](https://github.com/tylim88/styled-break#styled-break)>)
 
 🍨 Create your responsive styled components with breeze using custom [Styled Components](https://www.npmjs.com/package/styled-components) HOC!
 
