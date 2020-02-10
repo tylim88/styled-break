@@ -6,6 +6,7 @@
 
 * minimalist api
 * component approach
+* small footprint
 * 0 dependency
 * tested
 
