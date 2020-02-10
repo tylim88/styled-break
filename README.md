@@ -5,7 +5,7 @@
 🍨 Create your responsive styled components with breeze using custom [Styled Components](https://www.npmjs.com/package/styled-components) HOC!
 
 * minimalist api
-* component approach
+* declarative
 * small footprint
 * 0 dependency
 * tested
@@ -50,17 +50,18 @@ const Demo = () => {
       width='500'
       styledCss={{
         xs_m: `width:100px;
-        height:100px;
-        background-color:blue;`,
-        sm_md: `
-        width:200px;
-        height:200px;
-        background-color:red;`,
+          height:100px;
+          background-color:blue;`,
+        sm_md: css({
+          width: "200px",
+          height: "200px",
+          backgroundColor: "red"
+        }),
         xl: css`
           ${props =>
             `width:${props.width}px;
-        height:300px;
-        background-color:purple;`}
+          height:300px;
+          background-color:purple;`}
         `,
       }}
     />
@@ -334,3 +335,8 @@ const DivStyled = styled.div`
 ```
 
 friendly reminder: always use `css` helper to interpolate the function.
+
+## To Do
+
+* [ ] api to co-exist non media query style and media query style
+* [ ] implement map api
