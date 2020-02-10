@@ -111,7 +111,7 @@ const styledBreak = (config = {}) => {
 		`
 	}
 
-	return { cssR, styledR, styledHOC }
+	return { cssR, styledR, styledHOC, cssS }
 }
 
 export {

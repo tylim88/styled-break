@@ -12,7 +12,7 @@ import { create } from 'react-test-renderer'
 const gap = 0.02
 const infinity = 999999
 
-const checkLength = (arr1, arr2) => {
+const isArrSameLength = (arr1, arr2) => {
 	it('check array length', () => {
 		expect.assertions(1)
 		expect(arr1.length).toBe(arr2.length)
@@ -46,7 +46,7 @@ describe('test utilities', () => {
 		const maxWidthArr = minWidthArr2.map(num => num - gap)
 		maxWidthArr.push(infinity)
 
-		checkLength(minWidthArr, maxWidthArr)
+		isArrSameLength(minWidthArr, maxWidthArr)
 
 		minWidthArr.forEach((minWidth, i) => {
 			it(`test ${minWidth}`, () => {
@@ -97,7 +97,7 @@ describe('test utilities', () => {
 			maxOnly(infinity),
 		]
 
-		checkLength(modeArr, answer)
+		isArrSameLength(modeArr, answer)
 
 		modeArr.forEach((mode, i) => {
 			it(`test ${mode}`, () => {
@@ -115,21 +115,41 @@ describe('test utilities', () => {
 	})
 })
 
-describe('test styledBreak', () => {
-	const { cssR, styledR, styledHOC } = styledBreak({
+describe('test core API', () => {
+	const { cssR, styledR, styledHOC, cssS } = styledBreak({
 		xs: 0,
 		sm: 576,
 		xl: 1200,
 		md: 768,
 		lg: 992,
 	})
-	describe('test output is function', () => {
-		const funcArr = [cssR, styledR, styledHOC]
+
+	describe('test styledBreak ouput', () => {
+		const funcArr = [cssR, styledR, styledHOC, cssS]
 
 		funcArr.forEach(func => {
 			it(`test existence of ${func.name}`, () => {
 				expect.assertions(1)
 				expect(typeof func).toBe('function')
+			})
+		})
+	})
+
+	describe('test cssS', () => {
+		const arr = []
+		const inputArr = [
+			{ i: 'haha', o: 'haha' },
+			{ i: arr, o: arr },
+			{ i: undefined, o: '' },
+			{ i: null, o: '' },
+			{ i: 123, o: '' },
+		]
+		inputArr.forEach((input, i) => {
+			it(`test no${i}:${JSON.stringify(input)}`, () => {
+				expect.assertions(1)
+				const { i, o } = input
+				const output = cssS(i)
+				expect(output).toBe(o)
 			})
 		})
 	})

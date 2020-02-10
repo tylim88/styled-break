@@ -1,5 +1,11 @@
 # Change log
 
+## 1.0.1
+
+- add PR welcome badge
+- add more tests
+- update readme
+
 ## 1.0.0
 
 - add badges
