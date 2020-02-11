@@ -5,7 +5,7 @@
 🍨 Create your responsive styled components with breeze using custom [Styled Components](https://www.npmjs.com/package/styled-components) HOC!
 
 * minimalist api, less import more styling!
-* declarative, relax and code!
+* declarative, highly abstracted yet powerful!
 * 0 dependency, small footprint!
 * tested and production ready!
 
