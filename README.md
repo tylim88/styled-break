@@ -93,7 +93,7 @@ which is equivalent to
 background-color: green;
 width: 150px;
 height: 150px;
-border-radius: 5px 5px 5px 50px
+border-radius: 5px 5px 5px 50px;
 
 @media (max-width: 500.98px) {
     width: 100px;
@@ -123,7 +123,6 @@ border-radius: 5px 5px 5px 50px
 
 @media (min-width: 1200px) {
     border-radius: 30px 30px 30px 50px;
-
 }
 ```
 
