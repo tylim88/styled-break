@@ -150,7 +150,7 @@ const { cssR, styledR, styledHOC } = styledBreak(config)
 #### config
 
 * config(optional): object made of `breakpoints` and `sLevel` props.
-  * breakpoints(optional): object where default value is `bootstrap` breakpoints: **0, 576, 768,992,1200**. You can define as many breakpoints you want.
+  * breakpoints(optional): object where default value is `bootstrap` breakpoints: **0, 576, 768, 992, 1200**. You can define as many breakpoints you want.
     * props name: you can name your breakpoint whatever name you want, ⚠️however please **avoid** including underscore `_` in props name.
     * values: The value should be the **minimum** value of your breakpoint (the unit is `px`).
   * sLevel(optional): is global setting of class specificity level, default value is `one`. You can nest specificity level individually to have finer control on class specificity level.
