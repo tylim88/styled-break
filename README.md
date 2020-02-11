@@ -184,6 +184,8 @@ which equivalent to
 width: 100px;
 ```
 
+this advantage of this over over [as string input](#as-string-input) is, this can coexist with media queries.
+
 #### b.min
 
 append `_n` or `nothing` anything to the breakpoint prop name:
@@ -269,6 +271,8 @@ if the 1st breakpoint exist but 2nd breakpoint doesn't exist, such as appending 
 #### As String Input
 
 `styledCss` can also be just string without any breakpoint needed, which mean the style is applied without any media query.
+
+However if you need to non media query style together with media query style, it is better to use [without](#a.without).
 
 ```jsx
 const styledCss = `width: 100px;`
