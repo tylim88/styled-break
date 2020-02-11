@@ -4,11 +4,12 @@
 
 🍨 Create your responsive styled components with breeze using custom [Styled Components](https://www.npmjs.com/package/styled-components) HOC!
 
-* minimalist api
-* declarative
-* small footprint
-* 0 dependency
-* tested
+* minimalist api, less import more styling!
+* declarative, high level abstraction!
+* 0 dependency, small footprint!
+* tested and production ready!
+
+🙌 **mapping available in 2.0.0 beta**
 
 ## Installation
 
@@ -55,7 +56,8 @@ const Demo = () => {
         `,
         xs_m: `width: 100px;
           height: 100px;
-          background-color: blue;`,
+          background-color: blue;
+        `,
         sm_md: css({
           width: "200px",
           height: "200px",
@@ -67,6 +69,15 @@ const Demo = () => {
           height: 300px;
           background-color: purple;`}
         `,
+        [JSON.stringify({
+          _  : [5, 5, 5],
+          xs_m: [10, 10, 10],
+          sm_md: [20, 20, 20],
+          xl: [30, 30, 30],
+        })]: (a, b, c) => css`
+      border-radius: ${a}px ${b}px ${c}px
+       ${props => props.bottomLeftRadius}px;
+     `,
       }}
     />
   )
@@ -82,6 +93,7 @@ which is equivalent to
 background-color: green;
 width: 150px;
 height: 150px;
+border-radius: 5px 5px 5px 50px
 
 @media (max-width: 500.98px) {
     width: 100px;
@@ -99,6 +111,19 @@ height: 150px;
     width: 500px;
     height: 300px;
     background-color: purple;
+}
+
+@media (max-width: 500.98px) {
+    border-radius: 10px 10px 10px 50px;
+}
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+    border-radius: 20px 20px 20px 50px;
+}
+
+@media (min-width: 1200px) {
+    border-radius: 30px 30px 30px 50px;
+
 }
 ```
 
@@ -125,7 +150,7 @@ const { cssR, styledR, styledHOC } = styledBreak(config)
 `styledBreak` creates a `cssR` helper function plus 2 HOC `styledR` and `styledHOC`.
 
 * config(optional): object made of `breakpoints` and `sLevel` props.
-  * breakpoints(optional): default value is bootstrap breakpoint. You can define as many breakpoints you want, however please **avoid** including underscore `_` in props name. The value should be the **minimum** value of your breakpoint (the unit is `px`).
+  * breakpoints(optional): default value is bootstrap breakpoint. You can define as many breakpoints you want, ⚠️however please **avoid** including underscore `_` in props name. The value should be the **minimum** value of your breakpoint (the unit is `px`).
   * sLevel(optional): is global setting of class specificity level, default value is `one`. You can nest specificity level individually to have finer control on class specificity level.
   
 ### 2. styledCss
@@ -361,7 +386,12 @@ const DivStyled = styled.div`
 
 reminder: always use `css` helper to interpolate the function.
 
+## Acknowledgement
+
+* [Styled Component Breakpoint](https://www.npmjs.com/package/styled-components-breakpoint) for mapping api
+
 ## To Do
 
-* [x] api to co-exist non media query style and media query style
-* [ ] implement map api
+* [x] add styledCss prop name for non media query
+* [x] implement map api
+* [ ] higher level abstraction (similar to [Styled System](https://www.npmjs.com/package/styled-system))

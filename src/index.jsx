@@ -23,24 +23,37 @@ const Demo = () => {
 	return (
 		<DivStyled
 			maxWidth='500'
+			bottomLeftRadius='50'
 			styledCss={{
-				_: `background-color:green;
-				width:50px;
-				height:50px;
+				_: `background-color: green;
+				width: 50px;
+				height: 50px;
 				`,
-				xs_m: `width:100px;
-				height:100px;
-				background-color:blue;`,
+				xs_m: `width: 100px;
+				height: 100px;
+				background-color: blue;
+				`,
 				sm_md: `
-				width:200px;
-				height:200px;
-				background-color:red;`,
-				xl_xl: css`
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				`,
+				xl: css`
 					${props =>
 						`width:${props.maxWidth}px;
-				height:300px;
-				background-color:purple;`}
+				height: 300px;
+				background-color: purple;`}
 				`,
+				[JSON.stringify({
+					_: [5, 5, 5],
+					xs_m: [10, 10, 10],
+					sm_md: [20, 20, 20],
+					xl: [30, 30, 30],
+				})]: (a, b, c) =>
+					css`
+						border-radius: ${a}px ${b}px ${c}px
+							${props => props.bottomLeftRadius}px;
+					`,
 			}}
 		/>
 	)

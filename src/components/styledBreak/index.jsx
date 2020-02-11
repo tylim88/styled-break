@@ -67,28 +67,41 @@ const styledBreak = (config = {}) => {
 			return styledCss
 		} else if (type === 'object' && styledCss) {
 			let cssString = []
-			for (const prop in styledCss) {
-				const [targetPoint, direction] = prop.split('_')
-				if (prop === '_') {
-					cssString = [...cssString, styledCss[prop]]
-				} else if (
-					styledCss[prop] !== undefined &&
-					sortedBreakpoints[targetPoint] !== undefined
-				) {
+			for (const styledCssProp in styledCss) {
+				const [targetPoint, direction] = styledCssProp.split('_')
+				const styledCssValue = styledCss[styledCssProp]
+				if (styledCssProp === '_') {
+					cssString = [...cssString, styledCssValue]
+				} else if (sortedBreakpoints[targetPoint] !== undefined) {
 					const direction_ = direction || ''
 					cssString = [
 						...cssString,
 						`
 						${getMediaQuery(direction_, sortedBreakpoints, targetPoint)} {`,
-						styledCss[prop],
+						styledCssValue,
 						`
 					}
 					`,
 					]
+				} else if (typeof styledCssValue === 'function') {
+					const mapping = JSON.parse(styledCssProp)
+					if (typeof mapping === 'object') {
+						const styledCssInner = {}
+						for (const styledObjProp in mapping) {
+							const styledObjValue = mapping[styledObjProp]
+							styledCssInner[styledObjProp] = Array.isArray(styledObjValue)
+								? styledCssValue(...styledObjValue)
+								: styledCssValue(styledObjValue)
+						}
+						cssString = [...cssString, cssS(styledCssInner)]
+					} else {
+						// should we throw error?
+					}
 				}
 			}
 			return cssString
 		} else {
+			// should we throw error?
 			return ''
 		}
 	}
