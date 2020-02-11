@@ -24,6 +24,10 @@ const Demo = () => {
 		<DivStyled
 			maxWidth='500'
 			styledCss={{
+				_: `background-color:green;
+				width:50px;
+				height:50px;
+				`,
 				xs_m: `width:100px;
 				height:100px;
 				background-color:blue;`,

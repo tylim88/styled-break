@@ -69,7 +69,9 @@ const styledBreak = (config = {}) => {
 			let cssString = []
 			for (const prop in styledCss) {
 				const [targetPoint, direction] = prop.split('_')
-				if (
+				if (prop === '_') {
+					cssString = [...cssString, styledCss[prop]]
+				} else if (
 					styledCss[prop] !== undefined &&
 					sortedBreakpoints[targetPoint] !== undefined
 				) {

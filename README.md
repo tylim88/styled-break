@@ -49,6 +49,10 @@ const Demo = () => {
     <DivStyled
       width='500'
       styledCss={{
+        _: `background-color:green;
+        width:50px;
+        height:50px;
+        `,
         xs_m: `width:100px;
           height:100px;
           background-color:blue;`,
@@ -75,6 +79,11 @@ render(<Demo />, document.getElementById('root'))
 which is equivalent to
 
 ```css
+
+background-color: green;
+width: 50px;
+height: 50px;
+
 @media (max-width: 500.98px) {
     width: 100px;
     height: 100px;
@@ -132,7 +141,21 @@ const styledCss = {
 
 this is your responsive object, the props name have 4 combination for every breakpoint, let take break point `xs`, `sm` and `md` as example where minimum of `xs` is 0, `sm` is 576 and `md` is 768.
 
-here is how you do max, min, only, and between width:
+here is how you do basic, max, min, only, and between width:
+
+### basic
+
+to write style with no media query, name your prop as `_`
+
+```jsx
+const styledCss = { _:`width: 100px;` }
+```
+
+which equivalent to
+
+```css
+width: 100px;
+```
 
 ### min
 
@@ -216,9 +239,9 @@ if the 1st breakpoint doesn't exist, the whole media query doesn't exist, no sty
 
 if the 1st breakpoint exist but 2nd breakpoint doesn't exist, such as appending `_randomZT2t2`, there would be no 2nd media query, which mean, it has only `min` media query.
 
-### Without Media Query
+### As String Input
 
-`styledCss` can also be just pure string without any breakpoint needed, which mean the style is applied without any media query.
+`styledCss` can also be just string without any breakpoint needed, which mean the style is applied without any media query.
 
 ```jsx
 const styledCss = `width: 100px;`
@@ -248,6 +271,7 @@ On top of the septicity you set, you can control individual css property specifi
 ```jsx
 // if your global specificity level is 3
 const styledCss = {
+  _:`width: 50px;`,
   xs:`&&{width: 100px;}`, // the total specificity level is 2*3 = 6
   md:`width: 200px;` // the total specificity level is 3
   }
@@ -281,6 +305,7 @@ const Demo = () => {
     <DivStyled
       width='500'
       styledCss={{
+        _:`width: 50px;`,
         xs_m: `width:100px;`,
         sm_md: `width:200px;`,
         xl: css`${props =>`width:${props.width}px;`}`,
@@ -291,7 +316,7 @@ const Demo = () => {
 }
 ```
 
-friendly reminder: always use `css` helper to interpolate the function.
+reminder: always use `css` helper to interpolate the function.
 
 ### 2. styledR(component)(styledCss,level)
 
@@ -323,6 +348,7 @@ import styled, { css } from 'styled-components'
 
 const DivStyled = styled.div`
   ${cssR({
+        _:`width: 50px;`,
         xs_m: `width:100px;`
         sm_md: `width:200px;
         xl: css`${props =>
@@ -334,9 +360,9 @@ const DivStyled = styled.div`
 `
 ```
 
-friendly reminder: always use `css` helper to interpolate the function.
+reminder: always use `css` helper to interpolate the function.
 
 ## To Do
 
-* [ ] api to co-exist non media query style and media query style
+* [x] api to co-exist non media query style and media query style
 * [ ] implement map api

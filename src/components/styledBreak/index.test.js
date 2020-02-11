@@ -189,10 +189,11 @@ describe('test core API', () => {
 
 	describe('test styledR', () => {
 		const ButtonStyled = styledR('button')({
+			_: 'color: blue;',
 			xs: css`
 				color: ${props => props.color};
 			`,
-			md_lg: 'color: yellow',
+			md_lg: 'color: yellow;',
 		})
 
 		const Button = <ButtonStyled color='red' />
@@ -204,8 +205,9 @@ describe('test core API', () => {
 		})
 
 		it('test hasStyle', () => {
-			expect.assertions(4)
+			expect.assertions(6)
 			const tree = create(Button).toJSON()
+			expect(tree).toHaveStyleRule('color', 'blue')
 			expect(tree).toHaveStyleRule('color', 'red', {
 				media: '(min-width:0px)',
 			})
@@ -224,7 +226,8 @@ describe('test core API', () => {
 				<Button
 					color='yellow'
 					styledCss={{
-						xs: 'color: red',
+						_: 'color: blue;',
+						xs: 'color: red;',
 						md_lg: css`
 							color: ${props => props.color};
 						`,
@@ -235,15 +238,17 @@ describe('test core API', () => {
 		})
 
 		it('test hasStyle', () => {
-			expect.assertions(4)
+			expect.assertions(6)
 			const tree = create(
 				<Button
 					styledCss={{
-						xs: 'color: red',
+						_: 'color: blue;',
+						xs: 'color: red;',
 						md_lg: 'color: yellow',
 					}}
 				/>
 			).toJSON()
+			expect(tree).toHaveStyleRule('color', 'blue')
 			expect(tree).toHaveStyleRule('color', 'red', {
 				media: '(min-width:0px)',
 			})

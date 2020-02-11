@@ -1,10 +1,14 @@
 # Change log
 
+## 1.0.2: 11-2-20
+
+- now able to write style without query
+
 ## 1.0.1
 
-- add PR welcome badge
-- add more tests
-- update readme
+1. add PR welcome badge
+2. add more tests
+3. update readme
 
 ## 1.0.0
 
