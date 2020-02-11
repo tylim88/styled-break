@@ -171,7 +171,7 @@ this is your responsive object, the props name have 4 combination for every brea
 
 here is how you do `without`, `max`, `min`, `only`, and `between` query:
 
-### without
+#### a.without
 
 to write style with no media query, name your prop as `_`
 
@@ -185,7 +185,7 @@ which equivalent to
 width: 100px;
 ```
 
-### min
+#### b.min
 
 append `_n` or `nothing` anything to the breakpoint prop name:
 
@@ -203,7 +203,7 @@ which equivalent to
 }
 ```
 
-### max
+#### c.max
 
 append `_m` to the breakpoint prop name:
 
@@ -223,7 +223,7 @@ the value max width is `next breakpoint - 0.02`
 
 if there is no next breakpoint, the value is `999999`
 
-### between
+#### d.between
 
 append `_anotherBreakpointName` to the breakpoint prop name:
 
@@ -241,7 +241,7 @@ which equivalent to
 
 it takes `xs` **min** width and `md` **max** width.
 
-### only
+#### e.only
 
 append `_o` or `_theSameBreakpointName` to the breakpoint prop name:
 
@@ -261,13 +261,13 @@ which equivalent to
 
 It takes `xs` **min** width and `xs` **max** width.
 
-### default
+#### default values
 
 if the 1st breakpoint doesn't exist, the whole media query doesn't exist, no style would be applied.
 
 if the 1st breakpoint exist but 2nd breakpoint doesn't exist, such as appending `_randomZT2t2`, there would be no 2nd media query, which mean, it has only `min` media query.
 
-### As String Input
+#### As String Input
 
 `styledCss` can also be just string without any breakpoint needed, which mean the style is applied without any media query.
 
@@ -275,7 +275,7 @@ if the 1st breakpoint exist but 2nd breakpoint doesn't exist, such as appending 
 const styledCss = `width: 100px;`
 ```
 
-### Function Interpolation
+#### Function Interpolation
 
 Of course you can also interpolate function just like you do in Styled Component (because that is the whole point), simply use Styled Component `css` helper function.
 
@@ -292,7 +292,7 @@ const styledCss = css`${ props=> `width: ${ props.width }px;` }`
 
 you don't need `css` helper if you are not doing function interpolation, this is stated in Styled Component [doc](https://styled-components.com/docs/api#css).
 
-### Class Specificity Level
+#### Class Specificity Level
 
 On top of the septicity you set, you can control individual css property specificity level, the end result is global specificity level times individual specificity level.
 
