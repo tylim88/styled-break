@@ -79,7 +79,6 @@ render(<Demo />, document.getElementById('root'))
 which is equivalent to
 
 ```css
-
 background-color: green;
 width: 50px;
 height: 50px;
