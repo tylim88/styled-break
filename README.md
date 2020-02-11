@@ -49,13 +49,13 @@ const Demo = () => {
     <DivStyled
       width='500'
       styledCss={{
-        _: `background-color:green;
-        width:50px;
-        height:50px;
+        _: `background-color: green;
+        width: 150px;
+        height: 150px;
         `,
-        xs_m: `width:100px;
-          height:100px;
-          background-color:blue;`,
+        xs_m: `width: 100px;
+          height: 100px;
+          background-color: blue;`,
         sm_md: css({
           width: "200px",
           height: "200px",
@@ -63,9 +63,9 @@ const Demo = () => {
         }),
         xl: css`
           ${props =>
-            `width:${props.width}px;
-          height:300px;
-          background-color:purple;`}
+            `width: ${props.width}px;
+          height: 300px;
+          background-color: purple;`}
         `,
       }}
     />
@@ -80,8 +80,8 @@ which is equivalent to
 
 ```css
 background-color: green;
-width: 50px;
-height: 50px;
+width: 150px;
+height: 150px;
 
 @media (max-width: 500.98px) {
     width: 100px;
