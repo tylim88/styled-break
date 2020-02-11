@@ -5,7 +5,7 @@
 🍨 Create your responsive styled components with breeze using custom [Styled Components](https://www.npmjs.com/package/styled-components) HOC!
 
 * minimalist api, less import more styling!
-* declarative, high level abstraction!
+* declarative, relax and code!
 * 0 dependency, small footprint!
 * tested and production ready!
 
@@ -147,12 +147,16 @@ const config = {
 const { cssR, styledR, styledHOC } = styledBreak(config)
 ```
 
-`styledBreak` creates a `cssR` helper function plus 2 HOC `styledR` and `styledHOC`.
+#### config
 
 * config(optional): object made of `breakpoints` and `sLevel` props.
-  * breakpoints(optional): default value is bootstrap breakpoint. You can define as many breakpoints you want, ⚠️however please **avoid** including underscore `_` in props name. The value should be the **minimum** value of your breakpoint (the unit is `px`).
+  * breakpoints(optional): object where default value is `bootstrap` breakpoints: **0, 576, 768,992,1200**. You can define as many breakpoints you want.
+    * props name: you can name your breakpoint whatever name you want, ⚠️however please **avoid** including underscore `_` in props name.
+    * values: The value should be the **minimum** value of your breakpoint (the unit is `px`).
   * sLevel(optional): is global setting of class specificity level, default value is `one`. You can nest specificity level individually to have finer control on class specificity level.
   
+the output of `styledBreak` are `styledR` and `styledHOC` HOC plus a `cssR` helper function.
+
 ### 2. styledCss
 
 ```jsx
@@ -165,9 +169,9 @@ const styledCss = {
 
 this is your responsive object, the props name have 4 combination for every breakpoint, let take break point `xs`, `sm` and `md` as example where minimum of `xs` is 0, `sm` is 576 and `md` is 768.
 
-here is how you do basic, max, min, only, and between width:
+here is how you do `without`, `max`, `min`, `only`, and `between` query:
 
-### basic
+### without
 
 to write style with no media query, name your prop as `_`
 
@@ -308,7 +312,7 @@ const styledCss = {
 creates a component that accept `styledCSS` prop that take `styledCSS` object (see [styledCss](#2-styledcss) for more information).
 
 * component(required): the component can be Html or React component, see below code for example
-* level(optional): override the `sLevel` pass to [styledBreak](#1-styledbreakconfig), the default value is `styledBreak`'s `sLevel`.
+* level(optional): override the `sLevel` pass to [styledBreak](#config), the default value is `styledBreak`'s `sLevel`.
 
 ```jsx
 import { css } from 'styled-components'
