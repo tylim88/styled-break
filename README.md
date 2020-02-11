@@ -395,7 +395,7 @@ reminder: always use `css` helper to interpolate the function.
 
 ## Acknowledgement
 
-* [Styled Component Breakpoint](https://www.npmjs.com/package/styled-components-breakpoint) for mapping api
+* [Styled Component Breakpoint](https://www.npmjs.com/package/styled-components-breakpoint) for mapping api inspiration.
 
 ## To Do
 
