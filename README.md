@@ -308,13 +308,17 @@ const styledCss = {
 
 Mapping is added in 2.0.0, this is useful if you want to repeat a style with different arguments, mapping is carried out by adding a prop in styledCss object.
 
-* Mapping props: an stringify object literal where:
+* Mapping props: an stringified object literal where:
   * prop: obey the same rule as [config](#config) breakpoint prop.
   * value: can be array or single value, it will be passed as argument to the mapping value.
 * Mapping value: callback that accept the value from Mapping prop and return string or interpolated string (with the help of `css` helper).
 
 ```jsx
-const styledCss = {[JSON.stringify({ xs_xs: [5,10,15,20], _:[100,100,100,100], sm_m:[20,15,10,5] })]: (a,b,c,d) => `border-radius: ${a}px ${b}px ${c}px ${d}px;`}
+const mappingProp = JSON.stringify({ xs_xs: [5,10,15,20], _:[100,100,100,100], sm_m:[20,15,10,5] })
+const mappingValue = (a,b,c,d) => `border-radius: ${a}px ${b}px ${c}px ${d}px;`
+
+const styledCss = { mappingProp: mappingValue }
+
 ```
 
 which equivalent to
@@ -334,7 +338,11 @@ border-radius: 100px 100px 100px 100px;
 you can of course pass only single argument, in this case you can drop the array notation, and of course you can also do function interpolation.
 
 ```jsx
-const styledCss = {[JSON.stringify({ _:50 })]: (a) => css`border-radius: ${props => props.extraRadius + a}px;`}
+
+const mappingProp = JSON.stringify({ _:50 })
+const mappingValue = a => css`border-radius: ${props => props.extraRadius + a}px;`
+
+const styledCss = { mappingProp: mappingValue }
 ```
 
 ## Create Responsive Styled Component
