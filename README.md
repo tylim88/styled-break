@@ -291,7 +291,20 @@ const styledCss = css`${ props=> `width: ${ props.width }px;` }`
 
 you don't need `css` helper if you are not doing function interpolation, this is stated in Styled Component [doc](https://styled-components.com/docs/api#css).
 
-### Mapping
+#### Class Specificity Level
+
+On top of the septicity you set, you can control individual css property specificity level, the end result is global specificity level times individual specificity level.
+
+```jsx
+// if your global specificity level is 3
+const styledCss = {
+  _:`width: 50px;`,
+  xs:`&&{width: 100px;}`, // the total specificity level is 2*3 = 6
+  md:`width: 200px;` // the total specificity level is 3
+  }
+```
+
+#### Mapping
 
 Mapping is added in 2.0.0, this is useful if you want to repeat a style with different arguments, mapping is carried out by adding a prop in styledCss object.
 
@@ -322,19 +335,6 @@ you can of course pass only single argument, in this case you can drop the array
 
 ```jsx
 const styledCss = {[JSON.stringify({ _:50 })]: (a) => css`border-radius: ${props => props.extraRadius + a}px;`}
-```
-
-#### Class Specificity Level
-
-On top of the septicity you set, you can control individual css property specificity level, the end result is global specificity level times individual specificity level.
-
-```jsx
-// if your global specificity level is 3
-const styledCss = {
-  _:`width: 50px;`,
-  xs:`&&{width: 100px;}`, // the total specificity level is 2*3 = 6
-  md:`width: 200px;` // the total specificity level is 3
-  }
 ```
 
 ## Create Responsive Styled Component
