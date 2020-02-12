@@ -49,7 +49,10 @@ const mappingProp = JSON.stringify({_: [5, 5, 5],
                                     xs_m: [10, 10, 10],
                                     sm_md: [20, 20, 20],
                                     xl: [30, 30, 30]})
-const mappingValue=props => props.bottomLeftRadius
+
+const mappingValue=(a, b, c) =>css`
+        border-radius: ${a}px ${b}px ${c}px ${props => props.bottomLeftRadius}px;
+     `
 
 const mapping={ mappingProp: mappingValue }
 
@@ -320,6 +323,7 @@ Mapping is added in 2.0.0, this is useful if you want to repeat a style with dif
 const mappingProp = JSON.stringify({ xs_xs: [5,10,15,20],
                                      _:[100,100,100,100],
                                      sm_m:[20,15,10,5] })
+
 const mappingValue = (a,b,c,d) => `border-radius: ${a}px ${b}px ${c}px ${d}px;`
 
 const styledCss = { mappingProp: mappingValue }
