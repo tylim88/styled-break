@@ -21,6 +21,7 @@ exports[`test core API test cssR test snapshot 1`] = `
 exports[`test core API test styleHOC test snapshot 1`] = `
 .c0 {
   color: blue;
+  width: 150px;
 }
 
 @media (min-width:0px) {
@@ -32,18 +33,32 @@ exports[`test core API test styleHOC test snapshot 1`] = `
 @media (min-width:768px) and (max-width:1199.98px) {
   .c0 {
     color: yellow;
+  }
+}
+
+@media (min-width:1200px) {
+  .c0 {
+    width: 250px;
+  }
+}
+
+@media (min-width:768px) and (max-width:1199.98px) {
+  .c0 {
+    width: 350px;
   }
 }
 
 <button
   className="c0"
   color="yellow"
+  width={50}
 />
 `;
 
 exports[`test core API test styledR test snapshot 1`] = `
 .c0 {
   color: blue;
+  width: 150px;
 }
 
 @media (min-width:0px) {
@@ -58,8 +73,21 @@ exports[`test core API test styledR test snapshot 1`] = `
   }
 }
 
+@media (min-width:1200px) {
+  .c0 {
+    width: 250px;
+  }
+}
+
+@media (min-width:768px) and (max-width:1199.98px) {
+  .c0 {
+    width: 350px;
+  }
+}
+
 <button
   className="c0"
   color="red"
+  width={50}
 />
 `;

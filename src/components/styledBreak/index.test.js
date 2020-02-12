@@ -105,8 +105,8 @@ describe('test utilities', () => {
 				const [targetPoint, direction] = mode.split('_')
 				const targetPoint_ = targetPoint || ''
 				const mediaQuery = getMediaQuery(
-					direction,
 					sortedBreakpoint,
+					direction,
 					targetPoint_
 				)
 				expect(mediaQuery).toBe(answer[i])
@@ -194,9 +194,13 @@ describe('test core API', () => {
 				color: ${props => props.color};
 			`,
 			md_lg: 'color: yellow;',
+			[JSON.stringify({ _: 100, xl: 200, md_lg: 300 })]: width =>
+				css`
+					width: ${props => width + props.width}px;
+				`,
 		})
 
-		const Button = <ButtonStyled color='red' />
+		const Button = <ButtonStyled width={50} color='red' />
 
 		it('test snapshot', () => {
 			expect.assertions(1)
@@ -205,7 +209,7 @@ describe('test core API', () => {
 		})
 
 		it('test hasStyle', () => {
-			expect.assertions(6)
+			expect.assertions(12)
 			const tree = create(Button).toJSON()
 			expect(tree).toHaveStyleRule('color', 'blue')
 			expect(tree).toHaveStyleRule('color', 'red', {
@@ -214,45 +218,58 @@ describe('test core API', () => {
 			expect(tree).toHaveStyleRule('color', 'yellow', {
 				media: '(min-width:768px) and (max-width:1199.98px)',
 			})
+			expect(tree).toHaveStyleRule('width', '150px')
+			expect(tree).toHaveStyleRule('width', '250px', {
+				media: '(min-width:1200px)',
+			})
+			expect(tree).toHaveStyleRule('width', '350px', {
+				media: '(min-width:768px) and (max-width:1199.98px)',
+			})
 		})
 	})
 
 	describe('test styleHOC', () => {
-		const Button = styledHOC('button')()
+		const ButtonStyled = styledHOC('button')()
+
+		const Button = (
+			<ButtonStyled
+				width={50}
+				color='yellow'
+				styledCss={{
+					_: 'color: blue;',
+					xs: 'color: red;',
+					md_lg: css`
+						color: ${props => props.color};
+					`,
+					[JSON.stringify({ _: 100, xl: 200, md_lg: 300 })]: width =>
+						css`
+							width: ${props => width + props.width}px;
+						`,
+				}}
+			/>
+		)
 
 		it('test snapshot', () => {
 			expect.assertions(1)
-			const tree = create(
-				<Button
-					color='yellow'
-					styledCss={{
-						_: 'color: blue;',
-						xs: 'color: red;',
-						md_lg: css`
-							color: ${props => props.color};
-						`,
-					}}
-				/>
-			).toJSON()
+			const tree = create(Button).toJSON()
 			expect(tree).toMatchSnapshot()
 		})
 
 		it('test hasStyle', () => {
-			expect.assertions(6)
-			const tree = create(
-				<Button
-					styledCss={{
-						_: 'color: blue;',
-						xs: 'color: red;',
-						md_lg: 'color: yellow',
-					}}
-				/>
-			).toJSON()
+			expect.assertions(12)
+			const tree = create(Button).toJSON()
 			expect(tree).toHaveStyleRule('color', 'blue')
 			expect(tree).toHaveStyleRule('color', 'red', {
 				media: '(min-width:0px)',
 			})
 			expect(tree).toHaveStyleRule('color', 'yellow', {
+				media: '(min-width:768px) and (max-width:1199.98px)',
+			})
+			expect(tree).toHaveStyleRule('width', '150px')
+			expect(tree).toHaveStyleRule('width', '250px', {
+				media: '(min-width:1200px)',
+			})
+			expect(tree).toHaveStyleRule('width', '350px', {
 				media: '(min-width:768px) and (max-width:1199.98px)',
 			})
 		})

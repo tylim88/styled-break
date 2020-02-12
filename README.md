@@ -9,7 +9,7 @@
 * 0 dependency, small footprint!
 * tested and production ready!
 
-🙌 **mapping available in 2.0.0 beta**
+🙌 **[mapping](#mapping) available in 2.0.0**
 
 ## Installation
 
@@ -45,6 +45,11 @@ const { styledHOC } = styledBreak(config)
 
 const DivStyled = styledHOC('div')()
 
+const mappingProp = JSON.stringify({_:[5, 5, 5], xs_m:[10, 10, 10], sm_md:[20, 20, 20], xl:[30, 30, 30]})
+const mappingValue=props => props.bottomLeftRadius
+
+const mapping={ mappingProp: mappingValue }
+
 const Demo = () => {
   return (
     <DivStyled
@@ -69,15 +74,7 @@ const Demo = () => {
           height: 300px;
           background-color: purple;`}
         `,
-        [JSON.stringify({
-          _  : [5, 5, 5],
-          xs_m: [10, 10, 10],
-          sm_md: [20, 20, 20],
-          xl: [30, 30, 30],
-        })]: (a, b, c) => css`
-      border-radius: ${a}px ${b}px ${c}px
-       ${props => props.bottomLeftRadius}px;
-     `,
+        mapping
       }}
     />
   )
@@ -150,7 +147,7 @@ const { cssR, styledR, styledHOC } = styledBreak(config)
 
 * config(optional): object made of `breakpoints` and `sLevel` props.
   * breakpoints(optional): object where default value is `bootstrap` breakpoints: **0, 576, 768, 992, 1200**. You can define as many breakpoints you want.
-    * props name: you can name your breakpoint whatever name you want, ⚠️however please **avoid** including underscore `_` in props name.
+    * props: you can name your breakpoint whatever name you want, ⚠️however please **avoid** including underscore `_` in props name.
     * values: The value should be the **minimum** value of your breakpoint (the unit is `px`).
   * sLevel(optional): is global setting of class specificity level, default value is `one`. You can nest specificity level individually to have finer control on class specificity level.
   
@@ -215,7 +212,7 @@ const styledCss = { sm_m:`width: 100px;` }
 which equivalent to
 
 ```css
-@media (max-width: 576px) {
+@media (max-width: 575.98px) {
     width: 100px;
 }
 ```
@@ -290,10 +287,42 @@ const styledCss = {xs_o: css`${ props=> `width: ${ props.width }px;` }`}
 
 // or without any breakpoint
 const styledCss = css`${ props=> `width: ${ props.width }px;` }`
-
 ```
 
 you don't need `css` helper if you are not doing function interpolation, this is stated in Styled Component [doc](https://styled-components.com/docs/api#css).
+
+### Mapping
+
+Mapping is added in 2.0.0, this is useful if you want to repeat a style with different arguments, mapping is carried out by adding a prop in styledCss object.
+
+* Mapping props: an stringify object literal where:
+  * prop: obey the same rule as [config](#config) breakpoint prop.
+  * value: can be array or single value, it will be passed as argument to the mapping value.
+* Mapping value: callback that accept the value from Mapping prop and return string or interpolated string (with the help of `css` helper).
+
+```jsx
+const styledCss = {[JSON.stringify({ xs_xs: [5,10,15,20], _:[100,100,100,100], sm_m:[20,15,10,5] })]: (a,b,c,d) => `border-radius: ${a}px ${b}px ${c}px ${d}px;`}
+```
+
+which equivalent to
+
+```css
+border-radius: 100px 100px 100px 100px;
+
+@media (min-width: 0px) and (max-width: 575.98px) {
+    border-radius: 5px 10px 15px 20px;
+}
+
+@media (max-width:  575.98px) {
+    border-radius: 20px 15px 10px 5px;
+}
+```
+
+you can of course pass only single argument, in this case you can drop the array notation, and of course you can also do function interpolation.
+
+```jsx
+const styledCss = {[JSON.stringify({ _:50 })]: (a) => css`border-radius: ${props => props.extraRadius + a}px;`}
+```
 
 #### Class Specificity Level
 

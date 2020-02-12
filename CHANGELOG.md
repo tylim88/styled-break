@@ -1,5 +1,9 @@
 # Change log
 
+## 2.0.0: 12-2-20
+
+- add map api
+
 ## 1.0.2: 11-2-20
 
 - now able to write style without query

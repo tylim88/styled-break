@@ -6,8 +6,8 @@ const getMaxWidth = (minWidthArr, minWidth) => {
 }
 
 const getMediaQuery = (
-	direction = '',
 	sortedBreakpoints = {},
+	direction = undefined,
 	targetPoint = ''
 ) => {
 	const minWidth = sortedBreakpoints[targetPoint]
@@ -16,7 +16,7 @@ const getMediaQuery = (
 	const minMedia = `@media (min-width: ${minWidth}px)`
 	const maxWidth = getMaxWidth(minWidthArr, minWidth)
 	switch (direction) {
-		case '':
+		case undefined:
 		case 'n':
 			return minMedia
 		case 'm':
@@ -73,11 +73,10 @@ const styledBreak = (config = {}) => {
 				if (styledCssProp === '_') {
 					cssString = [...cssString, styledCssValue]
 				} else if (sortedBreakpoints[targetPoint] !== undefined) {
-					const direction_ = direction || ''
 					cssString = [
 						...cssString,
 						`
-						${getMediaQuery(direction_, sortedBreakpoints, targetPoint)} {`,
+						${getMediaQuery(sortedBreakpoints, direction, targetPoint)} {`,
 						styledCssValue,
 						`
 					}
