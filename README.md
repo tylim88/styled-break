@@ -9,7 +9,7 @@
 * 0 dependency, small footprint!
 * tested and production ready!
 
-🙌 **[mapping](#mapping) available in 2.0.0**
+🙌 **[Mapping](#mapping) now available in 2.0.0!**
 
 ## Installation
 
@@ -338,6 +338,7 @@ border-radius: 100px 100px 100px 100px;
 you can of course pass only single argument, in this case you can drop the array notation, and of course you can also do function interpolation.
 
 ```jsx
+import {css} from 'styled-components'
 
 const mappingProp = JSON.stringify({ _:50 })
 const mappingValue = a => css`border-radius: ${props => props.extraRadius + a}px;`
@@ -438,4 +439,4 @@ reminder: always use `css` helper to interpolate the function.
 
 * [x] add styledCss prop name for non media query
 * [x] implement map api
-* [ ] higher level abstraction (similar to [Styled System](https://www.npmjs.com/package/styled-system))
+* [ ] further abstraction
