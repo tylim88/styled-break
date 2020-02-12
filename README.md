@@ -45,10 +45,10 @@ const { styledHOC } = styledBreak(config)
 
 const DivStyled = styledHOC('div')()
 
-const mappingProp = JSON.stringify({_:[5, 5, 5], 
-                                    xs_m:[10, 10, 10],
-                                    sm_md:[20, 20, 20],
-                                    xl:[30, 30, 30]})
+const mappingProp = JSON.stringify({_: [5, 5, 5], 
+                                    xs_m: [10, 10, 10],
+                                    sm_md: [20, 20, 20],
+                                    xl: [30, 30, 30]})
 const mappingValue=props => props.bottomLeftRadius
 
 const mapping={ mappingProp: mappingValue }
@@ -160,9 +160,9 @@ the output of `styledBreak` are `styledR` and `styledHOC` HOC plus a `cssR` help
 
 ```jsx
 const styledCss = {
-  xs_m: `width:100px;`,
-  sm_md: `width:200px;`,
-  xl: css`${props =>`width:${props.width}px;`}`,
+  xs_m: `width: 100px;`,
+  sm_md: `width: 200px;`,
+  xl: css`${props =>`width: ${props.width}px;`}`,
 }
 ```
 
@@ -302,7 +302,7 @@ On top of the septicity you set, you can control individual css property specifi
 // if your global specificity level is 3
 const styledCss = {
   _:`width: 50px;`,
-  xs:`&&{width: 100px;}`, // the total specificity level is 2*3 = 6
+  xs:`&&{ width: 100px; }`, // the total specificity level is 2*3 = 6
   md:`width: 200px;` // the total specificity level is 3
   }
 ```
@@ -423,10 +423,10 @@ import styled, { css } from 'styled-components'
 const DivStyled = styled.div`
   ${cssR({
         _:`width: 50px;`,
-        xs_m: `width:100px;`
-        sm_md: `width:200px;
+        xs_m: `width: 100px;`
+        sm_md: `width: 200px;
         xl: css`${props =>
-            `width:${props.width}px;`
+            `width: ${props.width}px;`
             }
       }
       ,3 // specificity level (optional)
@@ -444,4 +444,5 @@ reminder: always use `css` helper to interpolate the function.
 
 * [x] add styledCss prop name for non media query
 * [x] implement map api
+* [ ] add more media type
 * [ ] further abstraction
