@@ -189,7 +189,7 @@ append `_n` or `nothing` anything to the breakpoint prop name:
 
 ```jsx
 const styledCss = { xs:`width: 100px;` }
-or
+// OR
 const styledCss = { xs_n:`width: 100px;` }
 ```
 
@@ -245,7 +245,7 @@ append `_o` or `_theSameBreakpointName` to the breakpoint prop name:
 
 ```jsx
 const styledCss = { xs_o:`width: 100px;` }
-or
+// OR
 const styledCss = { xs_xs:`width: 100px;` }
 ```
 
