@@ -1,5 +1,9 @@
 # Change log
 
+## 2.0.2: 12-2-20
+
+- update doc
+
 ## 2.0.1: 12-2-20
 
 - update doc

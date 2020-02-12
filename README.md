@@ -45,7 +45,10 @@ const { styledHOC } = styledBreak(config)
 
 const DivStyled = styledHOC('div')()
 
-const mappingProp = JSON.stringify({_:[5, 5, 5], xs_m:[10, 10, 10], sm_md:[20, 20, 20], xl:[30, 30, 30]})
+const mappingProp = JSON.stringify({_:[5, 5, 5], 
+                                    xs_m:[10, 10, 10],
+                                    sm_md:[20, 20, 20],
+                                    xl:[30, 30, 30]})
 const mappingValue=props => props.bottomLeftRadius
 
 const mapping={ mappingProp: mappingValue }
@@ -146,7 +149,7 @@ const { cssR, styledR, styledHOC } = styledBreak(config)
 #### config
 
 * config(optional): object made of `breakpoints` and `sLevel` props.
-  * breakpoints(optional): object where default value is `bootstrap` breakpoints: **0, 576, 768, 992, 1200**. You can define as many breakpoints you want.
+  * breakpoints(optional): object where default value is `bootstrap` breakpoints: **{xs: 0, sm: 576, md: 768, lg: 992, xl: 1200}**. You can define as many breakpoints you want.
     * props: you can name your breakpoint whatever name you want, ⚠️however please **avoid** including underscore `_` in props name.
     * values: The value should be the **minimum** value of your breakpoint (the unit is `px`).
   * sLevel(optional): is global setting of class specificity level, default value is `one`. You can nest specificity level individually to have finer control on class specificity level.
@@ -273,7 +276,7 @@ if the 1st breakpoint exist but 2nd breakpoint doesn't exist, such as appending 
 const styledCss = `width: 100px;`
 ```
 
-However if you need to non media query style together with media query style, it is better to use [without](#a.without).
+However if you need to write non media query style together with media query style, it is better to use [without](#a.without).
 
 #### Function Interpolation
 
@@ -314,7 +317,9 @@ Mapping is added in 2.0.0, this is useful if you want to repeat a style with dif
 * Mapping value: callback that accept the value from Mapping prop and return string or interpolated string (with the help of `css` helper).
 
 ```jsx
-const mappingProp = JSON.stringify({ xs_xs: [5,10,15,20], _:[100,100,100,100], sm_m:[20,15,10,5] })
+const mappingProp = JSON.stringify({ xs_xs: [5,10,15,20],
+                                     _:[100,100,100,100],
+                                     sm_m:[20,15,10,5] })
 const mappingValue = (a,b,c,d) => `border-radius: ${a}px ${b}px ${c}px ${d}px;`
 
 const styledCss = { mappingProp: mappingValue }
