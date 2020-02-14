@@ -1,5 +1,9 @@
 # Change log
 
+## 2.0.4: 14-2-20
+
+- fixed doc error (mapping in Demo)
+
 ## 2.0.3: 14-2-20
 
 - fixed doc error (mapping in Demo)

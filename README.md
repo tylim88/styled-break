@@ -58,6 +58,7 @@ const Demo = () => {
   return (
     <DivStyled
       width='500'
+      bottomLeftRadius={50}
       styledCss={{
         _: `background-color: green;
           width: 150px;
