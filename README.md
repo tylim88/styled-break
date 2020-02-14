@@ -54,16 +54,14 @@ const mappingValue=(a, b, c) =>css`
         border-radius: ${a}px ${b}px ${c}px ${props => props.bottomLeftRadius}px;
      `
 
-const mapping={ mappingProp: mappingValue }
-
 const Demo = () => {
   return (
     <DivStyled
       width='500'
       styledCss={{
         _: `background-color: green;
-        width: 150px;
-        height: 150px;
+          width: 150px;
+          height: 150px;
         `,
         xs_m: `width: 100px;
           height: 100px;
@@ -80,7 +78,7 @@ const Demo = () => {
           height: 300px;
           background-color: purple;`}
         `,
-        mapping
+        [mappingProp]: mappingValue
       }}
     />
   )
