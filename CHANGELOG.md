@@ -1,5 +1,9 @@
 # Change log
 
+## 2.1.0: 25-2-20
+
+= prevent styledCss props passed into React component resulting in unrecognized props warning
+
 ## 2.0.4: 14-2-20
 
 - fixed doc error (mapping in Demo)

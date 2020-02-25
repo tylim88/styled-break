@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import React from 'react'
 
 const getMaxWidth = (minWidthArr, minWidth) => {
 	const result = minWidthArr[minWidthArr.indexOf(minWidth) + 1]
@@ -116,8 +117,13 @@ const styledBreak = (config = {}) => {
 			${cssR(styledCss, level)}
 		`
 	}
-	const styledHOC = comp => (level = sLevel_) => {
-		return styled(comp)`
+	const styledHOC = Comp => (level = sLevel_) => {
+		const CompNew = props => {
+			//eslint-disable-next-line
+			const { styledCss, ...otherProps } = props // prevent styledCss props from passing in
+			return <Comp {...otherProps} />
+		}
+		return styled(CompNew)`
 			${props => {
 				const { styledCss } = props
 				return cssR(styledCss, level)
