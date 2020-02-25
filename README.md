@@ -427,10 +427,10 @@ const DivStyled = styled.div`
   ${cssR({
         _:`width: 50px;`,
         xs_m: `width: 100px;`
-        sm_md: `width: 200px;
+        sm_md: `width: 200px;`
         xl: css`${props =>
             `width: ${props.width}px;`
-            }
+            }`
       }
       ,3 // specificity level (optional)
       )}

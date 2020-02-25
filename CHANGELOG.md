@@ -1,8 +1,12 @@
 # Change log
 
+## 2.1.1: 25-2-20
+
+- fix typo in readme
+
 ## 2.1.0: 25-2-20
 
-= prevent styledCss props passed into React component resulting in unrecognized props warning
+- prevent styledCss props passed into React component resulting in unrecognized props warning
 
 ## 2.0.4: 14-2-20
 
