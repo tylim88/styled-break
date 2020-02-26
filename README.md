@@ -11,6 +11,8 @@
 
 🙌 **[Mapping](#mapping) now available in 2.0.0!**
 
+🚨 Latest update 2.1.0: fix React unrecognized prop warning.
+
 ## Installation
 
 ```bash
@@ -186,7 +188,7 @@ which equivalent to
 width: 100px;
 ```
 
-this advantage of this over over [As String Input](#As-String-Input) is, this can be written together with media queries.
+this advantage of this over [String Form](#String-Form) is, this can be written together with media queries.
 
 #### b.min
 
@@ -264,13 +266,13 @@ which equivalent to
 
 It takes `xs` **min** width and `xs` **max** width.
 
-#### default values
+#### Default Values
 
 if the 1st breakpoint doesn't exist, the whole media query doesn't exist, no style would be applied.
 
 if the 1st breakpoint exist but 2nd breakpoint doesn't exist, such as appending `_randomZT2t2`, there would be no 2nd media query, which mean, it has only `min` media query.
 
-#### As String Input
+#### String Form
 
 `styledCss` can also be just string without any breakpoint needed, which mean the style is applied without any media query.
 
@@ -282,7 +284,7 @@ However if you need to write non media query style together with media query sty
 
 #### Function Interpolation
 
-Of course you can also interpolate function just like you do in Styled Component (because that is the whole point), simply use Styled Component `css` helper function.
+Of course you can interpolate function just like you do in Styled Component (because that is the whole point), simply use Styled Component `css` helper function.
 
 ```jsx
 import {css} from 'styled-components'
@@ -343,7 +345,7 @@ border-radius: 100px 100px 100px 100px;
 }
 ```
 
-you can of course pass only single argument, in this case you can drop the array notation, and of course you can also do function interpolation.
+If you have only one argument, in this case you can drop the array notation(no issue if you keep it as array), finally you can of course do function interpolation.
 
 ```jsx
 import {css} from 'styled-components'

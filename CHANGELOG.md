@@ -1,5 +1,9 @@
 # Change log
 
+## 2.1.2: 26-2-20
+
+- housekeeping readme
+
 ## 2.1.1: 25-2-20
 
 - fix typo in readme
