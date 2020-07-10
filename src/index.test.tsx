@@ -12,7 +12,7 @@ import { create } from 'react-test-renderer'
 const gap = 0.02
 const infinity = 999999
 
-const isArrSameLength = (arr1, arr2) => {
+const isArrSameLength = <M, N>(arr1: M[], arr2: N[]) => {
 	it('check array length', () => {
 		expect.assertions(1)
 		expect(arr1.length).toBe(arr2.length)
@@ -79,9 +79,9 @@ describe('test utilities', () => {
 			'xl_m',
 		]
 
-		const minOnly = width => `@media (min-width: ${width}px)`
-		const maxOnly = width => `@media (max-width: ${width}px)`
-		const minMax = (width1, width2) =>
+		const minOnly = (width: number) => `@media (min-width: ${width}px)`
+		const maxOnly = (width: number) => `@media (max-width: ${width}px)`
+		const minMax = (width1: number, width2: number) =>
 			`@media (min-width: ${width1}px) and (max-width: ${width2}px)`
 
 		const answer = [
@@ -136,7 +136,7 @@ describe('test core API', () => {
 	})
 
 	describe('test cssS', () => {
-		const arr = []
+		const arr: unknown[] = []
 		const inputArr = [
 			{ i: 'haha', o: 'haha' },
 			{ i: arr, o: arr },

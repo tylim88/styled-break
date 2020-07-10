@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		"isolatedModules": true,
+		"module": "commonjs",
+		"declaration": true,
+		"esModuleInterop": true,
+		"outDir": "build",
+		"sourceMap": true,
+		"noImplicitAny": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"target": "es2015",
+		"allowJs": true,
+		"baseUrl": "src",
+		"noEmit": true,
+		"jsx": "react",
+		"paths": {
+			"~/*": ["*"]
+		},
+		"typeRoots": ["./node_modules/@types"]
+	},
+	"include": ["src/**/*"]
+}

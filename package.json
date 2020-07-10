@@ -16,10 +16,9 @@
 		"coverage": "jest --coverage",
 		"test:watch": "jest --watch",
 		"prepublishOnly": "npm run build -- --no-demo",
-		"start": "webpack-dev-server --mode development --open",
-		"build": "webpack --mode production",
-		"lint": "eslint --cache --format codeframe --ext mjs,jsx,js src",
-		"lint:fix": "npm run lint --fix"
+		"build": "rm -rf build && babel src --out-dir build --extensions \".ts\"",
+		"lint": "eslint ./**/*.{js,ts,json}",
+		"lint-fix": "eslint ./**/*.{js,ts,json} --fix"
 	},
 	"keywords": [
 		"react",
@@ -36,13 +35,19 @@
 		"react": "^16.12.0"
 	},
 	"devDependencies": {
+		"@babel/cli": "^7.10.4",
+		"@babel/core": "^7.10.4",
+		"@babel/node": "^7.10.4",
 		"@babel/preset-env": "^7.8.4",
 		"@babel/preset-react": "^7.8.3",
-		"@neutrinojs/react-components": "^9.1.0",
-		"@typescript-eslint/eslint-plugin": "^2.19.0",
-		"@typescript-eslint/parser": "^2.19.0",
+		"@babel/preset-typescript": "^7.10.4",
+		"@types/jest": "^26.0.4",
+		"@types/react-test-renderer": "^16.9.2",
+		"@typescript-eslint/eslint-plugin": "^2.34.0",
+		"@typescript-eslint/parser": "^2.34.0",
 		"babel-eslint": "^10.0.3",
 		"babel-jest": "^25.1.0",
+		"babel-plugin-root-import": "^6.5.0",
 		"eslint": "^6.8.0",
 		"eslint-cli": "^1.1.1",
 		"eslint-config-prettier": "^6.10.0",
@@ -50,31 +55,29 @@
 		"eslint-plugin-flowtype": "^3.13.0",
 		"eslint-plugin-import": "^2.20.1",
 		"eslint-plugin-jsx-a11y": "^6.2.3",
+		"eslint-plugin-markdown": "^1.0.2",
 		"eslint-plugin-prettier": "^3.1.2",
 		"eslint-plugin-react": "^7.18.3",
 		"eslint-plugin-react-hooks": "^1.7.0",
 		"husky": "^4.2.1",
 		"jest": "^25.1.0",
 		"jest-styled-components": "^7.0.0",
-		"neutrino": "^9.1.0",
 		"prettier": "^1.19.1",
-		"prettier-quick": "0.0.5",
 		"react": "^16.12.0",
-		"react-dom": "^16.12.0",
 		"react-test-renderer": "^16.12.0",
 		"styled-components": "^5.0.1",
-		"webpack": "^4.41.5",
-		"webpack-cli": "^3.3.10",
-		"webpack-dev-server": "^3.10.3"
+		"ts-jest": "^26.1.1",
+		"typescript": "^3.9.6"
 	},
 	"dependencies": {},
 	"eslintConfig": {
+		"plugins": [
+			"prettier"
+		],
 		"extends": [
 			"react-app",
-			"prettier/react",
 			"eslint:recommended",
-			"plugin:prettier/recommended",
-			"prettier"
+			"plugin:prettier/recommended"
 		],
 		"rules": {
 			"no-unused-vars": [
@@ -93,21 +96,77 @@
 					]
 				}
 			}
-		}
+		},
+		"overrides": [
+			{
+				"files": [
+					"*.js"
+				],
+				"extends": [
+					"eslint:recommended",
+					"plugin:prettier/recommended"
+				]
+			},
+			{
+				"files": [
+					"*.ts"
+				],
+				"parser": "@typescript-eslint/parser",
+				"extends": [
+					"plugin:@typescript-eslint/recommended",
+					"plugin:prettier/recommended"
+				],
+				"rules": {
+					"@typescript-eslint/member-delimiter-style": "off",
+					"@typescript-eslint/camelcase": "off",
+					"@typescript-eslint/explicit-function-return-type": "off"
+				}
+			},
+			{
+				"files": [
+					"*.json"
+				],
+				"extends": [
+					"plugin:json/recommended",
+					"plugin:prettier/recommended"
+				]
+			}
+		]
 	},
 	"prettier": {
-		"eslintIntegration": true,
+		"arrowParens": "avoid",
 		"singleQuote": true,
 		"jsxSingleQuote": true,
 		"trailingComma": "es5",
 		"semi": false,
 		"jsxBracketSameLine": false,
-		"useTabs": true
+		"useTabs": true,
+		"endOfLine": "auto"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "npm run lint && lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.{js,jsx,ts,tsx,css,json,scss,md}": [
+			"prettier --write"
+		]
 	},
 	"babel": {
 		"presets": [
 			"@babel/preset-env",
-			"@babel/preset-react"
+			"@babel/preset-react",
+			"@babel/preset-typescript"
+		],
+		"plugins": [
+			[
+				"babel-plugin-root-import",
+				{
+					"rootPathSuffix": "./src",
+					"rootPathPrefix": "~/"
+				}
+			]
 		]
 	}
 }
