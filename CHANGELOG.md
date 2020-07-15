@@ -1,5 +1,10 @@
 # Change log
 
+## 2.2.0 15-7-20
+
+- added new way and easier to use function in styling
+- update in readme how to avoid passing unrecognized prop to a DOM element
+
 ## 2.1.2: 26-2-20
 
 - housekeeping readme
@@ -10,7 +15,7 @@
 
 ## 2.1.0: 25-2-20
 
-- prevent styledCss props passed into React component resulting in unrecognized props warning
+- avoid styledCss props passed into React component resulting in unrecognized props warning
 
 ## 2.0.4: 14-2-20
 

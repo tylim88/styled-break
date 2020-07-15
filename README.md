@@ -1,13 +1,13 @@
 # styled-break
 
-[![npm](https://img.shields.io/npm/v/styled-break)](https://www.npmjs.com/package/styled-break)  [![GitHub](https://img.shields.io/github/license/tylim88/styled-break)](https://github.com/tylim88/styled-break/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/tylim88/styled-break/pulls) [![tylim88](https://circleci.com/gh/tylim88/styled-break.svg?style=svg)](<[LINK](https://github.com/tylim88/styled-break#styled-break)>)
+[![npm](https://img.shields.io/npm/v/styled-break)](https://www.npmjs.com/package/styled-break) [![GitHub](https://img.shields.io/github/license/tylim88/styled-break)](https://github.com/tylim88/styled-break/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/tylim88/styled-break/pulls) [![tylim88](https://circleci.com/gh/tylim88/styled-break.svg?style=svg)](<[LINK](https://github.com/tylim88/styled-break#styled-break)>)
 
 🍨 Create your responsive styled components with breeze using custom [Styled Components](https://www.npmjs.com/package/styled-components) HOC!
 
-* minimalist api, less import more styling!
-* declarative, highly abstracted yet powerful!
-* 0 dependency, small footprint!
-* tested and production ready!
+- minimalist api, less import more styling!
+- declarative, highly abstracted yet powerful!
+- 0 dependency, small footprint!
+- tested and production ready!
 
 🙌 **[Mapping](#mapping) now available in 2.0.0!**
 
@@ -21,7 +21,7 @@ npm i styled-break
 
 ## Demo
 
-Try it at **[Code Sandbox](https://codesandbox.io/s/styled-break-sf6c9)**!  
+Try it at **[Code Sandbox](https://codesandbox.io/s/styled-break-sf6c9)**!
 
 ## Usage
 
@@ -32,63 +32,65 @@ import styledBreak from 'styled-break'
 import { css } from 'styled-components'
 
 const config = {
-  breakpoints: {
-    xs: 0,
-    sx: 501,
-    sm: 576,
-    md: 768,
-    lg: 992,
-    xl: 1200,
-  },
-  sLevel: 3,
+	breakpoints: {
+		xs: 0,
+		sx: 501,
+		sm: 576,
+		md: 768,
+		lg: 992,
+		xl: 1200,
+	},
+	sLevel: 3,
 }
 
 const { styledHOC } = styledBreak(config)
 
 const DivStyled = styledHOC('div')()
 
-const mappingProp = JSON.stringify({_: [5, 5, 5], 
-                                    xs_m: [10, 10, 10],
-                                    sm_md: [20, 20, 20],
-                                    xl: [30, 30, 30]})
+const mappingProp = JSON.stringify({
+	_: [5, 5, 5],
+	xs_m: [10, 10, 10],
+	sm_md: [20, 20, 20],
+	xl: [30, 30, 30],
+})
 
-const mappingValue=(a, b, c) =>css`
-        border-radius: ${a}px ${b}px ${c}px ${props => props.bottomLeftRadius}px;
-     `
+const mappingValue = (a, b, c) => css`
+	border-radius: ${a}px ${b}px ${c}px ${props => props.bottomLeftRadius}px;
+`
 
 const Demo = () => {
-  return (
-    <DivStyled
-      width='500'
-      bottomLeftRadius={50}
-      styledCss={{
-        _: `background-color: green;
+	return (
+		<DivStyled
+			width='500'
+			bottomLeftRadius={50}
+			styledCss={{
+				_: `background-color: green;
           width: 150px;
           height: 150px;
         `,
-        xs_m: `width: 100px;
+				xs_m: `width: 100px;
           height: 100px;
           background-color: blue;
         `,
-        sm_md: css({
-          width: "200px",
-          height: "200px",
-          backgroundColor: "red"
-        }),
-        xl: css`
-          ${props =>
-            `width: ${props.width}px;
+				sm_md: css({
+					width: '200px',
+					height: '200px',
+					backgroundColor: 'red',
+				}),
+				lg: props => `background-color:${props.color};`,
+				xl: css`
+					${props =>
+						`width: ${props.width}px;
           height: 300px;
           background-color: purple;`}
-        `,
-        [mappingProp]: mappingValue
-      }}
-    />
-  )
+				`,
+				[mappingProp]: mappingValue,
+			}}
+		/>
+	)
 }
 
 render(<Demo />, document.getElementById('root'))
-
 ```
 
 which is equivalent to
@@ -100,33 +102,37 @@ height: 150px;
 border-radius: 5px 5px 5px 50px;
 
 @media (max-width: 500.98px) {
-    width: 100px;
-    height: 100px;
-    background-color: blue;
+	width: 100px;
+	height: 100px;
+	background-color: blue;
 }
 
 @media (min-width: 576px) and (max-width: 991.98px) {
-    width: 200px;
-    height: 200px;
-    background-color: red;
+	width: 200px;
+	height: 200px;
+	background-color: red;
 }
 
 @media (min-width: 1200px) {
-    width: 500px;
-    height: 300px;
-    background-color: purple;
+	width: 500px;
+	height: 300px;
+	background-color: purple;
 }
 
 @media (max-width: 500.98px) {
-    border-radius: 10px 10px 10px 50px;
+	border-radius: 10px 10px 10px 50px;
 }
 
 @media (min-width: 576px) and (max-width: 991.98px) {
-    border-radius: 20px 20px 20px 50px;
+	border-radius: 20px 20px 20px 50px;
+}
+
+@media (min-width: 992px) {
+	background-color: cyan;
 }
 
 @media (min-width: 1200px) {
-    border-radius: 30px 30px 30px 50px;
+	border-radius: 30px 30px 30px 50px;
 }
 ```
 
@@ -136,15 +142,15 @@ border-radius: 5px 5px 5px 50px;
 
 ```jsx
 const config = {
-  breakpoints: {
-    xs: 0,
-    sx: 501,
-    sm: 576,
-    md: 768,
-    lg: 992,
-    xl: 1200,
-  },
-  sLevel: 3,
+	breakpoints: {
+		xs: 0,
+		sx: 501,
+		sm: 576,
+		md: 768,
+		lg: 992,
+		xl: 1200,
+	},
+	sLevel: 3,
 }
 
 const { cssR, styledR, styledHOC } = styledBreak(config)
@@ -152,21 +158,24 @@ const { cssR, styledR, styledHOC } = styledBreak(config)
 
 #### config
 
-* config(optional): object made of `breakpoints` and `sLevel` props.
-  * breakpoints(optional): object where default value is `bootstrap` breakpoints: **{xs: 0, sm: 576, md: 768, lg: 992, xl: 1200}**. You can define as many breakpoints you want.
-    * props: you can name your breakpoint whatever name you want, ⚠️however please **avoid** including underscore `_` in props name.
-    * values: The value should be the **minimum** value of your breakpoint (the unit is `px`).
-  * sLevel(optional): is global setting of class specificity level, default value is `one`. You can nest specificity level individually to have finer control on class specificity level.
-  
+- config(optional): object made of `breakpoints` and `sLevel` props.
+
+  - breakpoints(optional): object where default value is `bootstrap` breakpoints: **{xs: 0, sm: 576, md: 768, lg: 992, xl: 1200}**. You can define as many breakpoints you want.
+    - props: you can name your breakpoint whatever name you want, ⚠️however please **avoid** including underscore `_` in props name.
+    - values: The value should be the **minimum** value of your breakpoint (the unit is `px`).
+  - sLevel(optional): is global setting of class specificity level, default value is `one`. You can nest specificity level individually to have finer control on class specificity level.
+
 the output of `styledBreak` are `styledR` and `styledHOC` HOC plus a `cssR` helper function.
 
 ### 2. styledCss
 
 ```jsx
 const styledCss = {
-  xs_m: `width: 100px;`,
-  sm_md: `width: 200px;`,
-  xl: css`${props =>`width: ${props.width}px;`}`,
+	xs_m: `width: 100px;`,
+	sm_md: `width: 200px;`,
+	xl: css`
+		${props => `width: ${props.width}px;`}
+	`,
 }
 ```
 
@@ -179,7 +188,7 @@ here is how you do `without`, `max`, `min`, `only`, and `between` query:
 to write style with no media query, name your prop as `_`
 
 ```jsx
-const styledCss = { _:`width: 100px;` }
+const styledCss = { _: `width: 100px;` }
 ```
 
 which equivalent to
@@ -195,16 +204,16 @@ this advantage of this over [String Form](#String-Form) is, this can be written 
 append `_n` or `nothing` anything to the breakpoint prop name:
 
 ```jsx
-const styledCss = { xs:`width: 100px;` }
+const styledCss = { xs: `width: 100px;` }
 // OR
-const styledCss = { xs_n:`width: 100px;` }
+const styledCss = { xs_n: `width: 100px;` }
 ```
 
 which equivalent to
 
 ```css
 @media (min-width: 0px) {
-    width: 100px;
+	width: 100px;
 }
 ```
 
@@ -213,14 +222,14 @@ which equivalent to
 append `_m` to the breakpoint prop name:
 
 ```jsx
-const styledCss = { sm_m:`width: 100px;` }
+const styledCss = { sm_m: `width: 100px;` }
 ```
 
 which equivalent to
 
 ```css
 @media (max-width: 575.98px) {
-    width: 100px;
+	width: 100px;
 }
 ```
 
@@ -233,14 +242,14 @@ if there is no next breakpoint, the value is `999999`
 append `_anotherBreakpointName` to the breakpoint prop name:
 
 ```jsx
-const styledCss = { xs_sm:`width: 100px;` }
+const styledCss = { xs_sm: `width: 100px;` }
 ```
 
 which equivalent to
 
 ```css
 @media (min-width: 0px) and (max-width: 767.98px) {
-    width: 100px;
+	width: 100px;
 }
 ```
 
@@ -251,16 +260,16 @@ it takes `xs` **min** width and `md` **max** width.
 append `_o` or `_theSameBreakpointName` to the breakpoint prop name:
 
 ```jsx
-const styledCss = { xs_o:`width: 100px;` }
+const styledCss = { xs_o: `width: 100px;` }
 // OR
-const styledCss = { xs_xs:`width: 100px;` }
+const styledCss = { xs_xs: `width: 100px;` }
 ```
 
 which equivalent to
 
 ```css
 @media (min-width: 0px) and (max-width: 575.98px) {
-    width: 100px;
+	width: 100px;
 }
 ```
 
@@ -287,16 +296,28 @@ However if you need to write non media query style together with media query sty
 Of course you can interpolate function just like you do in Styled Component (because that is the whole point), simply use Styled Component `css` helper function.
 
 ```jsx
-import {css} from 'styled-components'
+import { css } from 'styled-components'
 
 // with breakpoints
-const styledCss = {xs_o: css`${ props=> `width: ${ props.width }px;` }`}
+const styledCss = {
+	xs_o: css`
+		${props => `width: ${props.width}px;`}
+	`,
+}
 
 // or without any breakpoint
-const styledCss = css`${ props=> `width: ${ props.width }px;` }`
+const styledCss = css`
+	${props => `width: ${props.width}px;`}
+`
 ```
 
 you don't need `css` helper if you are not doing function interpolation, this is stated in Styled Component [doc](https://styled-components.com/docs/api#css).
+
+However you can pass function without `css` helper if the the function is not interpolated in template string:
+
+```jsx
+const styledCss = props => `width: ${props.width}px;`
+```
 
 #### Class Specificity Level
 
@@ -305,30 +326,32 @@ On top of the septicity you set, you can control individual css property specifi
 ```jsx
 // if your global specificity level is 3
 const styledCss = {
-  _:`width: 50px;`,
-  xs:`&&{ width: 100px; }`, // the total specificity level is 2*3 = 6
-  md:`width: 200px;` // the total specificity level is 3
-  }
+	_: `width: 50px;`,
+	xs: `&&{ width: 100px; }`, // the total specificity level is 2*3 = 6
+	md: `width: 200px;`, // the total specificity level is 3
+}
 ```
 
 #### Mapping
 
 Mapping is added in 2.0.0, this is useful if you want to repeat a style with different arguments, mapping is carried out by adding a prop in styledCss object.
 
-* Mapping props: an stringified object literal where:
-  * prop: obey the same rule as [config](#config) breakpoint prop.
-  * value: can be array or single value, it will be passed as argument to the mapping value.
-* Mapping value: callback that accept the value from Mapping prop and return string or interpolated string (with the help of `css` helper).
+- Mapping props: an stringified object literal where:
+  - prop: obey the same rule as [config](#config) breakpoint prop.
+  - value: can be array or single value, it will be passed as argument to the mapping value.
+- Mapping value: callback that accept the value from Mapping prop and return string or interpolated string (with the help of `css` helper).
 
 ```jsx
-const mappingProp = JSON.stringify({ xs_xs: [5,10,15,20],
-                                     _:[100,100,100,100],
-                                     sm_m:[20,15,10,5] })
+const mappingProp = JSON.stringify({
+	xs_xs: [5, 10, 15, 20],
+	_: [100, 100, 100, 100],
+	sm_m: [20, 15, 10, 5],
+})
 
-const mappingValue = (a,b,c,d) => `border-radius: ${a}px ${b}px ${c}px ${d}px;`
+const mappingValue = (a, b, c, d) =>
+	`border-radius: ${a}px ${b}px ${c}px ${d}px;`
 
 const styledCss = { mappingProp: mappingValue }
-
 ```
 
 which equivalent to
@@ -337,33 +360,36 @@ which equivalent to
 border-radius: 100px 100px 100px 100px;
 
 @media (min-width: 0px) and (max-width: 575.98px) {
-    border-radius: 5px 10px 15px 20px;
+	border-radius: 5px 10px 15px 20px;
 }
 
-@media (max-width:  575.98px) {
-    border-radius: 20px 15px 10px 5px;
+@media (max-width: 575.98px) {
+	border-radius: 20px 15px 10px 5px;
 }
 ```
 
 If you have only one argument, in this case you can drop the array notation(no issue if you keep it as array), finally you can of course do function interpolation.
 
 ```jsx
-import {css} from 'styled-components'
+import { css } from 'styled-components'
 
-const mappingProp = JSON.stringify({ _:50 })
-const mappingValue = a => css`border-radius: ${props => props.extraRadius + a}px;`
+const mappingProp = JSON.stringify({ _: 50 })
+const mappingValue = a =>
+	css`
+		border-radius: ${props => props.extraRadius + a}px;
+	`
 
 const styledCss = { mappingProp: mappingValue }
 ```
 
 ## Create Responsive Styled Component
 
-### 1. styledHOC(component)(level)  <--Recommended
+### 1. styledHOC(component)(level) <--Recommended
 
 creates a component that accept `styledCSS` prop that take `styledCSS` object (see [styledCss](#2-styledcss) for more information).
 
-* component(required): the component can be Html or React component, see below code for example
-* level(optional): override the `sLevel` pass to [styledBreak](#config), the default value is `styledBreak`'s `sLevel`.
+- component(required): the component can be Html or React component, see below code for example
+- level(optional): override the `sLevel` pass to [styledBreak](#config), the default value is `styledBreak`'s `sLevel`.
 
 ```jsx
 import { css } from 'styled-components'
@@ -401,26 +427,33 @@ reminder: always use `css` helper to interpolate the function.
 
 styledR is basically an extended `styled` of Styled Component
 
-* component(required): same as `component` object described in [styledHOC](#1-styledhoccomponentlevel----recommended).
-* styledCss(required): same as `styledCss` object described in [styledCss](#2-styledcss).
-* level(optional):  same as `level` number described in [styledHOC](#1-styledhoccomponentlevel----recommended).
+- component(required): same as `component` object described in [styledHOC](#1-styledhoccomponentlevel----recommended).
+- styledCss(required): same as `styledCss` object described in [styledCss](#2-styledcss).
+- level(optional): same as `level` number described in [styledHOC](#1-styledhoccomponentlevel----recommended).
 
 usage example
 
 ```jsx
 // to create styled html component
-const DivStyled = styledR('div')({xs_o: css`${props=> `width: ${props.width}px;`}`},1)
+const DivStyled = styledR('div')(
+	{
+		xs_o: css`
+			${props => `width: ${props.width}px;`}
+		`,
+	},
+	1
+)
 
 // to create a styled react component
-const ButtonStyled = styledR(Button)(`width: 100px;`,2)
+const ButtonStyled = styledR(Button)(`width: 100px;`, 2)
 ```
 
 ### 3. cssR(styledCss,level)
 
 if you don't like to create responsive styled component with `styledR` or `styledHOC` and you want to use the convention `styled` api of Styled Component, then this is what you need.
 
-* styledCss(required): same as styledCss object described in [styledCss](#2-styledcss).
-* level(optional):  same as `level` number described in [styledHOC](#1-styledhoccomponentlevel----recommended).
+- styledCss(required): same as styledCss object described in [styledCss](#2-styledcss).
+- level(optional): same as `level` number described in [styledHOC](#1-styledhoccomponentlevel----recommended).
 
 ```jsx
 import styled, { css } from 'styled-components'
@@ -443,11 +476,11 @@ reminder: always use `css` helper to interpolate the function.
 
 ## Acknowledgement
 
-* [Styled Component Breakpoint](https://www.npmjs.com/package/styled-components-breakpoint) for mapping api inspiration.
+- [Styled Component Breakpoint](https://www.npmjs.com/package/styled-components-breakpoint) for mapping api inspiration.
 
 ## To Do
 
-* [x] add styledCss prop name for non media query
-* [x] implement map api
-* [ ] add more media type
-* [ ] further abstraction
+- [x] add styledCss prop name for non media query
+- [x] implement map api
+- [ ] add more media type
+- [ ] further abstraction

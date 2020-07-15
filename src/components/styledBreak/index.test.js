@@ -190,9 +190,7 @@ describe('test core API', () => {
 	describe('test styledR', () => {
 		const ButtonStyled = styledR('button')({
 			_: 'color: blue;',
-			xs: css`
-				color: ${props => props.color};
-			`,
+			xs: props => `color:${props.color};`,
 			md_lg: 'color: yellow;',
 			[JSON.stringify({ _: 100, xl: 200, md_lg: 300 })]: width =>
 				css`

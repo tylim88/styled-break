@@ -66,19 +66,23 @@ const styledBreak = (config = {}) => {
 		const type = typeof styledCss
 		if (type === 'string' || Array.isArray(styledCss)) {
 			return styledCss
+		} else if (type === 'function') {
+			return css`
+				${styledCss}
+			`
 		} else if (type === 'object' && styledCss) {
 			let cssString = []
 			for (const styledCssProp in styledCss) {
 				const [targetPoint, direction] = styledCssProp.split('_')
 				const styledCssValue = styledCss[styledCssProp]
 				if (styledCssProp === '_') {
-					cssString = [...cssString, styledCssValue]
+					cssString = [...cssString, cssS(styledCssValue)]
 				} else if (sortedBreakpoints[targetPoint] !== undefined) {
 					cssString = [
 						...cssString,
 						`
 						${getMediaQuery(sortedBreakpoints, direction, targetPoint)} {`,
-						styledCssValue,
+						cssS(styledCssValue),
 						`
 					}
 					`,
@@ -112,15 +116,15 @@ const styledBreak = (config = {}) => {
 		}
 	`
 
-	const styledR = comp => (styledCss = '', level = sLevel_) => {
-		return styled(comp)`
+	const styledR = Comp => (styledCss = '', level = sLevel_) => {
+		return styled(Comp)`
 			${cssR(styledCss, level)}
 		`
 	}
 	const styledHOC = Comp => (level = sLevel_) => {
 		const CompNew = props => {
 			//eslint-disable-next-line
-			const { styledCss, ...otherProps } = props // prevent styledCss props from passing in
+			const { styledCss, styledProp, ...otherProps } = props // prevent styledCss props from passing in
 			return <Comp {...otherProps} />
 		}
 		return styled(CompNew)`

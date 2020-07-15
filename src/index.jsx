@@ -17,13 +17,18 @@ const config = {
 
 const { styledHOC } = styledBreak(config)
 
-const DivStyled = styledHOC('div')()
+const DivStyled = styledHOC((
+	// disable eslint for next line
+	// eslint-disable-next-line
+	{ maxWidth, bottomLeftRadius, color, ...restProps } // avoid passing prop to DOM element
+) => <div {...restProps} />)()
 
 const Demo = () => {
 	return (
 		<DivStyled
 			maxWidth='500'
 			bottomLeftRadius='50'
+			color='cyan'
 			styledCss={{
 				_: `background-color: green;
 				width: 50px;
@@ -38,11 +43,11 @@ const Demo = () => {
 				height: 200px;
 				background-color: red;
 				`,
+				lg: props => `background-color:${props.color};`,
 				xl: css`
-					${props =>
-						`width:${props.maxWidth}px;
-				height: 300px;
-				background-color: purple;`}
+					width: ${props => `${props.maxWidth}px;
+					height: 300px;
+					background-color: purple;`};
 				`,
 				[JSON.stringify({
 					_: [5, 5, 5],
