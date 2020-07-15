@@ -1,14 +1,14 @@
 import styled, { css } from 'styled-components'
 import React from 'react'
 
-const getMaxWidth = (minWidthArr, minWidth) => {
+const getMaxWidth = (minWidthArr: number[], minWidth: number) => {
 	const result = minWidthArr[minWidthArr.indexOf(minWidth) + 1]
 	return result ? result - 0.02 : 999999
 }
 
 const getMediaQuery = (
-	sortedBreakpoints = {},
-	direction = undefined,
+	sortedBreakpoints: { [index: string]: number } = {},
+	direction?: string,
 	targetPoint = ''
 ) => {
 	const minWidth = sortedBreakpoints[targetPoint]
@@ -37,17 +37,19 @@ const getMediaQuery = (
 	}
 }
 
-const objSort = (obj = {}) =>
+const objSort = (obj: { [index: string]: number } = {}) =>
 	Object.keys(obj)
 		.sort((a, b) => {
 			return obj[a] - obj[b]
 		})
-		.reduce((acc, key) => {
+		.reduce<typeof obj>((acc, key) => {
 			acc[key] = obj[key]
 			return acc
 		}, {})
 
-const styledBreak = (config = {}) => {
+const styledBreak = (
+	config: { breakpoints?: { [index: string]: number }; sLevel?: number } = {}
+) => {
 	const { breakpoints, sLevel } = config
 
 	const sLevel_ = sLevel || 1
@@ -67,7 +69,7 @@ const styledBreak = (config = {}) => {
 		if (type === 'string' || Array.isArray(styledCss)) {
 			return styledCss
 		} else if (type === 'object' && styledCss) {
-			let cssString = []
+			let cssString: string[] = []
 			for (const styledCssProp in styledCss) {
 				const [targetPoint, direction] = styledCssProp.split('_')
 				const styledCssValue = styledCss[styledCssProp]
@@ -112,8 +114,8 @@ const styledBreak = (config = {}) => {
 		}
 	`
 
-	const styledR = comp => (styledCss = '', level = sLevel_) => {
-		return styled(comp)`
+	const styledR = Comp => (styledCss = '', level = sLevel_) => {
+		return styled(Comp)`
 			${cssR(styledCss, level)}
 		`
 	}

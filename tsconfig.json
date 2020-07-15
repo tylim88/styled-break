@@ -9,7 +9,7 @@
 		"noImplicitAny": true,
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
-		"target": "es2015",
+		"target": "esNext",
 		"allowJs": true,
 		"baseUrl": "src",
 		"noEmit": true,
