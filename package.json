@@ -2,7 +2,7 @@
 	"name": "styled-break",
 	"version": "2.1.2",
 	"description": "🍨 Create Responsive Styled Components With Breeze!",
-	"main": "build/styledBreak.js",
+	"main": "dist/styledBreak.js",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/tylim88/styled-break"
