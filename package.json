@@ -3,22 +3,18 @@
 	"version": "2.1.2",
 	"description": "🍨 Create Responsive Styled Components With Breeze!",
 	"main": "build/styledBreak.js",
-	"files": [
-		"build/styledBreak.js"
-	],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/tylim88/styled-break"
 	},
 	"scripts": {
 		"install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm i",
+		"tsc": "tsc -p tsconfig.json --noEmit && npm run dummy",
+		"lint": "eslint ./**/*.tsx ",
+		"lint-fix": "eslint ./**/*.tsx --fix",
+		"build": "rm -rf dist && rm -rf types && babel src --out-dir dist --extensions \".ts\" && tsc -p tsconfig.json",
 		"test": "jest",
-		"coverage": "jest --coverage",
-		"test:watch": "jest --watch",
-		"prepublishOnly": "npm run build -- --no-demo",
-		"build": "rm -rf build && babel src --out-dir build --extensions \".ts\"",
-		"lint": "eslint ./**/*.{js,ts,json}",
-		"lint-fix": "eslint ./**/*.{js,ts,json} --fix"
+		"dummy": ""
 	},
 	"keywords": [
 		"react",
@@ -46,8 +42,6 @@
 		"@types/styled-components": "^5.1.1",
 		"@typescript-eslint/eslint-plugin": "^2.34.0",
 		"@typescript-eslint/parser": "^2.34.0",
-		"babel-eslint": "^10.0.3",
-		"babel-jest": "^25.1.0",
 		"babel-plugin-root-import": "^6.5.0",
 		"eslint": "^6.8.0",
 		"eslint-cli": "^1.1.1",
@@ -63,6 +57,8 @@
 		"husky": "^4.2.1",
 		"jest": "^25.1.0",
 		"jest-styled-components": "^7.0.0",
+		"jsdoc": "^3.6.5",
+		"lint-staged": "^10.2.11",
 		"prettier": "^1.19.1",
 		"react": "^16.12.0",
 		"react-test-renderer": "^16.12.0",
@@ -71,9 +67,48 @@
 		"typescript": "^3.9.6"
 	},
 	"dependencies": {},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.{ts,md}": [
+			"npm run lint --fix",
+			"prettier --write"
+		],
+		"*.ts": "npm run tsc"
+	},
+	"prettier": {
+		"arrowParens": "avoid",
+		"singleQuote": true,
+		"jsxSingleQuote": true,
+		"trailingComma": "es5",
+		"semi": false,
+		"useTabs": true,
+		"endOfLine": "auto"
+	},
+	"babel": {
+		"presets": [
+			"@babel/preset-env",
+			"@babel/preset-react",
+			"@babel/preset-typescript"
+		],
+		"plugins": [
+			[
+				"babel-plugin-root-import",
+				{
+					"rootPathSuffix": "./src",
+					"rootPathPrefix": "~/"
+				}
+			]
+		]
+	},
 	"eslintConfig": {
 		"plugins": [
-			"prettier"
+			"prettier",
+			"markdown",
+			"@typescript-eslint"
 		],
 		"extends": [
 			"react-app",
@@ -101,15 +136,6 @@
 		"overrides": [
 			{
 				"files": [
-					"*.js"
-				],
-				"extends": [
-					"eslint:recommended",
-					"plugin:prettier/recommended"
-				]
-			},
-			{
-				"files": [
 					"*.ts"
 				],
 				"parser": "@typescript-eslint/parser",
@@ -122,52 +148,7 @@
 					"@typescript-eslint/camelcase": "off",
 					"@typescript-eslint/explicit-function-return-type": "off"
 				}
-			},
-			{
-				"files": [
-					"*.json"
-				],
-				"extends": [
-					"plugin:json/recommended",
-					"plugin:prettier/recommended"
-				]
 			}
-		]
-	},
-	"prettier": {
-		"arrowParens": "avoid",
-		"singleQuote": true,
-		"jsxSingleQuote": true,
-		"trailingComma": "es5",
-		"semi": false,
-		"jsxBracketSameLine": false,
-		"useTabs": true,
-		"endOfLine": "auto"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "npm run lint && lint-staged"
-		}
-	},
-	"lint-staged": {
-		"*.{js,jsx,ts,tsx,css,json,scss,md}": [
-			"prettier --write"
-		]
-	},
-	"babel": {
-		"presets": [
-			"@babel/preset-env",
-			"@babel/preset-react",
-			"@babel/preset-typescript"
-		],
-		"plugins": [
-			[
-				"babel-plugin-root-import",
-				{
-					"rootPathSuffix": "./src",
-					"rootPathPrefix": "~/"
-				}
-			]
 		]
 	}
 }
